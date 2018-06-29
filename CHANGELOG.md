@@ -1,3 +1,8 @@
+<a name="3.0.1"></a>
+## [3.0.1](https://github.com/hypeJunctionPro/Elgg3-hypeDiscussions/compare/3.0.0...3.0.1) (2018-06-29)
+
+
+
 <a name="3.0.0"></a>
 # [3.0.0](https://github.com/hypeJunctionPro/Elgg3-hypeDiscussions/compare/2.2.0...3.0.0) (2018-06-29)
 

@@ -1,3 +1,13 @@
+<a name="3.1.0"></a>
+# [3.1.0](https://github.com/hypeJunctionPro/Elgg3-hypeDiscussions/compare/3.0.1...3.1.0) (2018-06-29)
+
+
+### Features
+
+* **releases:** fix previous release ([0610222](https://github.com/hypeJunctionPro/Elgg3-hypeDiscussions/commit/0610222))
+
+
+
 <a name="3.0.1"></a>
 ## [3.0.1](https://github.com/hypeJunctionPro/Elgg3-hypeDiscussions/compare/3.0.0...3.0.1) (2018-06-29)
 

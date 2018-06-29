@@ -1,13 +1,13 @@
 {
 	"name": "hypejunction/hypediscussions",
-	"version": "2.2.0",
+	"version": "3.0.0",
 	"type": "elgg-plugin",
 	"description": "Discussion threads for Elgg",
 	"homepage": "http://hypejunction.com",
 	"keywords": [
 		"elgg", "plugin", "discussions", "groups"
 	],
-	"license": "GPL-2.0",
+	"license": "proprietary",
 	"authors": [
 		{
 			"name": "Ismayil Khayredinov",

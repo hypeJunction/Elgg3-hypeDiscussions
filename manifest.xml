@@ -6,16 +6,16 @@
 
 	<description>Discussion Threads</description>
 	<category>social</category>
-	<version type="dist">2.2.0</version>
+	<version type="dist">3.0.0</version>
 
 	<author>Ismayil Khayredinov (inof@hypejunction.com)</author>
 	<website>http://www.hypejunction.com/</website>
 	<copyright>(c) 2015-2017 Ismayil Khayredinov</copyright>
-	<license>GNU General Public License version 2</license>
+	<license>https://hypejunction.com/license</license>
 
 	<requires>
 		<type>elgg_release</type>
-		<version>2.3</version>
+		<version>3.0</version>
 	</requires>
 
 	<requires>
@@ -39,10 +39,25 @@
 		<name>hypeInteractions</name>
 	</requires>
 
+    <requires>
+        <type>plugin</type>
+        <name>hypePost</name>
+    </requires>
+
 	<requires>
 		<type>plugin</type>
 		<name>hypeLists</name>
 	</requires>
+
+    <requires>
+        <type>plugin</type>
+        <name>hypeStash</name>
+    </requires>
+
+    <requires>
+        <type>plugin</type>
+        <name>hypeCapabilities</name>
+    </requires>
 
 	<provides>
 		<type>plugin</type>

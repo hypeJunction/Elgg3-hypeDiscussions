@@ -1,16 +1,14 @@
 <?php
 
 return [
-	'discussion:replies:no_results' => 'There are no replies in this topic yet',
+	'discussions' => 'Discussions',
+
 	'discussion:topic:threads' => 'Allow replying to replies',
 	'discussion:reply:title' => 'reply on %s',
-	'discussion:replies:no_results' => 'No replies were made yet on this topic',
 
 	'hypeDiscussions:usersettings:title' => 'Discussions',
 	'hypeInteractions:usersettings:title' => 'Comments and replies',
 
-	'discussion:topic:attachments' => 'Upload files',
-	'discussion:topic:enable_threads' => 'Allow comments on replies',
 	'discussion:topic:closed' => 'Closed discussion',
 
 	'discussion:group:container' => 'Group',
@@ -25,11 +23,29 @@ return [
 	'discussion:settings:site_wide_discussions' => 'Enable discussions outside of groups',
 	'discussion:settings:site_wide_discussions:help' => 'By default Elgg discussions are limited to groups. If enabled, users will be able to start discussions outside of groups',
 
-	'discussion:settings:enable_sort' => 'Enable filtering',
-	'discussion:settings:enable_sort:help' => 'If enabled, users will be able to search and filter discussions on listing pages',
+	'discussion:settings:post_discussions' => 'Allow users to start discussions about other posts',
+	'discussion:settings:post_discussions:help' => 'If enabled, users will be able to start discussions about blogs, files etc.',
 
-	'discussion:friends' => 'Friends\'s Discussions Topics',
+	'collection:object:discussion:no_results' => 'There are no discussions yet',
 
-	'discussion:setting:sort_discussions' => 'Sort discussions',
+	'field:object:discussion:description' => 'Topic message',
+	'field:object:discussion:threads' => 'Enable threading',
+	'field:object:discussion:threads:help' => 'With threading enabled comments can be made on comments',
+	'field:object:discussion:status' => 'Closed discussion',
+	'field:object:discussion:status:help' => 'Closed discussions do not accept any new responses',
+	'field:object:discussion:discussed_post_guid' => 'Discussion about',
+	'field:object:discussion:discussed_post_guid:help' => 'If this discussion is about another post on the site, you can link it here',
+	'field:object:enable_discussions' => 'Enable discussions about this post',
+	'field:object:enable_discussions:help' => 'Discussions can help maintain a focused interaction about a specific aspect of this post. 
+		This feature may be helpful, when comment threads become long and hard to follow.',
+
+	'widgets:discussion:name' => 'Discussions',
+	'widgets:discussion:description' => 'Displays latest discussion topics',
+
+	'discussion:discuss' => 'Discuss',
+	'discussion:relates_to' => 'Discussion About',
+
+	'discussion:post:no_access' => 'Related post not available',
+	'discussion:post:no_access:error' => 'The original post discussed in this topic is not accessible or has been removed',
 ];
 

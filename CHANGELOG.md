@@ -1,3 +1,13 @@
+<a name="3.1.1"></a>
+## [3.1.1](https://github.com/hypeJunctionPro/Elgg3-hypeDiscussions/compare/3.1.0...3.1.1) (2018-06-30)
+
+
+### Bug Fixes
+
+* **composer:** do not define plugin dependency in composer.json ([fbe1ca4](https://github.com/hypeJunctionPro/Elgg3-hypeDiscussions/commit/fbe1ca4))
+
+
+
 <a name="3.1.0"></a>
 # [3.1.0](https://github.com/hypeJunctionPro/Elgg3-hypeDiscussions/compare/3.0.1...3.1.0) (2018-06-29)
 

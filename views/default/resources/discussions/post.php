@@ -1,7 +1,7 @@
 <?php
 
 if (!\hypeJunction\Capabilities\Roles::can('read', 'post_discussions')) {
-	throw new \Elgg\PageNotFoundException();
+	throw new \Elgg\Exceptions\Http\PageNotFoundException();
 }
 
 $request = elgg_extract('request', $vars);
@@ -21,7 +21,7 @@ $collection = $collections->build($request->getRoute(), $entity, $request->getPa
 /* @var $collection \hypeJunction\Lists\CollectionInterface */
 
 if (!$collection) {
-	throw new \Elgg\PageNotFoundException();
+	throw new \Elgg\Exceptions\Http\PageNotFoundException();
 }
 
 $content = elgg_view('collection/view', [

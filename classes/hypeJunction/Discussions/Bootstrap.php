@@ -4,7 +4,6 @@ namespace hypeJunction\Discussions;
 
 use Elgg\Includer;
 use Elgg\PluginBootstrap;
-use Elgg\Values;
 use hypeJunction\Stash\Stash;
 
 class Bootstrap extends PluginBootstrap {
@@ -29,7 +28,6 @@ class Bootstrap extends PluginBootstrap {
 	 * {@inheritdoc}
 	 */
 	public function boot() {
-		elgg_register_plugin_hook_handler('route:rewrite', 'discussions', SetDiscussionRouteAlias::class);
 	}
 
 	/**
@@ -42,26 +40,6 @@ class Bootstrap extends PluginBootstrap {
 		elgg_register_collection('collection:object:discussion:friends', FriendsDiscussionsCollection::class);
 		elgg_register_collection('collection:object:discussion:group', GroupDiscussionsCollection::class);
 		elgg_register_collection('collection:object:discussion:post', PostDiscussionsCollection::class);
-
-		elgg_register_plugin_hook_handler('uses:comments', 'object:discussion', [Values::class, 'getTrue']);
-		elgg_register_plugin_hook_handler('uses:cover', 'object:discussion', [Values::class, 'getTrue']);
-		elgg_register_plugin_hook_handler('uses:river', 'object:discussion', [Values::class, 'getTrue']);
-		elgg_register_plugin_hook_handler('allow_attachments', 'object:blog', [Values::class, 'getTrue']);
-
-		elgg_register_plugin_hook_handler('fields', 'object:discussion', AddDiscussionFields::class);
-		elgg_register_plugin_hook_handler('fields', 'object', AddObjectFields::class);
-
-		// Setup menus
-		elgg_register_plugin_hook_handler('register', 'menu:site', SiteMenu::class);
-		elgg_register_plugin_hook_handler('register', 'menu:owner_block', OwnerBlockMenu::class);
-		elgg_register_plugin_hook_handler('register', 'menu:entity', EntityMenu::class);
-
-		// Configure permissions
-		elgg_register_plugin_hook_handler('permissions_check:comment', 'object', CanThreadReplies::class);
-		elgg_register_plugin_hook_handler('permissions_check:comment', 'object', CanCreateReply::class);
-
-		elgg_register_plugin_hook_handler('container_logic_check', 'object', CanContainReply::class);
-		elgg_register_plugin_hook_handler('container_permissions_check', 'object', CanCreateDiscussion::class);
 
 		// Allow admin only discussion creation in groups
 		elgg()->group_tools->register('admin_only_discussions', [
@@ -76,7 +54,6 @@ class Bootstrap extends PluginBootstrap {
 
 		elgg_unregister_notification_event('object', 'discussion');
 		elgg_register_notification_event('object', 'discussion', ['publish']);
-		elgg_register_plugin_hook_handler('prepare', 'notification:publish:object:discussion', 'discussion_prepare_notification');
 	}
 
 	/**

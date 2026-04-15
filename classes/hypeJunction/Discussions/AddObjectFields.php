@@ -24,7 +24,7 @@ class AddObjectFields {
 			return;
 		}
 
-		if (!elgg_get_plugin_setting('post_discussions', 'hypeDiscussions')) {
+		if (!elgg_get_plugin_setting('post_discussions', 'hypediscussions')) {
 			return;
 		}
 

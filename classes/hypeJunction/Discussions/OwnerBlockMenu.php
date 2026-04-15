@@ -26,7 +26,7 @@ class OwnerBlockMenu {
 			return;
 		}
 
-		if (!elgg_get_plugin_setting('site_wide_discussions', 'hypeDiscussions')) {
+		if (!elgg_get_plugin_setting('site_wide_discussions', 'hypediscussions')) {
 			return;
 		}
 

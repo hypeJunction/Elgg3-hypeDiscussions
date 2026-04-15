@@ -35,7 +35,7 @@ class AddDiscussionFields {
 			'priority' => 50,
 		]));
 
-		if (elgg_get_plugin_setting('max_comment_depth', 'hypeInteractions') > 1) {
+		if (elgg_get_plugin_setting('max_comment_depth', 'hypeinteractions') > 1) {
 			$fields->add('threads', new MetaField([
 				'#label' => false,
 				'type' => 'checkbox',
@@ -50,7 +50,7 @@ class AddDiscussionFields {
 			]));
 		}
 
-		if (elgg_get_plugin_setting('post_discussions', 'hypeDiscussions') && !$entity->guid) {
+		if (elgg_get_plugin_setting('post_discussions', 'hypediscussions') && !$entity->guid) {
 			$fields->add('discussed_post_guid', new MetaField([
 				'type' => 'guids',
 				'options' => [

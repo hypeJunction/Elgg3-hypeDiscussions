@@ -71,6 +71,14 @@ SETTINGS_VALUES
         echo 'Elgg 4.x installed successfully.' . PHP_EOL;
     " 2>&1 || echo "Install completed (check for errors above)."
 
+    echo "Symlinking core plugins..."
+    for core_plugin in /var/www/html/vendor/elgg/elgg/mod/*/; do
+        plugin_name=$(basename "$core_plugin")
+        if [ ! -e "/var/www/html/mod/${plugin_name}" ]; then
+            ln -s "$core_plugin" "/var/www/html/mod/${plugin_name}"
+        fi
+    done
+
     echo "Activating plugins..."
     php -r "
         require_once 'vendor/autoload.php';
@@ -132,6 +140,7 @@ SETTINGS_VALUES
             echo 'Plugin ${PLUGIN_ID} already active.' . PHP_EOL;
         } else {
             try {
+                \$plugin->setPriority('last');
                 \$plugin->activate();
                 echo 'Plugin ${PLUGIN_ID} activated.' . PHP_EOL;
             } catch (\Throwable \$e) {

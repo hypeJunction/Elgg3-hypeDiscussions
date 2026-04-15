@@ -1,3 +1,22 @@
+<a name="4.0.0"></a>
+# [4.0.0] — Elgg 4.x migration (2026-04-14)
+
+### Breaking Changes
+
+* Requires Elgg 4.x (PHP 7.4+)
+* Plugin ID is now lowercase `hypediscussions` everywhere; old camelCase `hypeDiscussions` ID is no longer valid for `elgg_get_plugin_setting()` calls
+* `manifest.xml` removed; configuration is entirely in `elgg-plugin.php`
+* `composer/installers` upgraded to `^2.0`; installer-name is now lowercase
+
+### Migrations
+
+* Hook handler callbacks migrated from `($hook, $type, $return, $params)` to `\Elgg\Hook $hook`
+* All `elgg_register_plugin_hook_handler()` calls moved from `Bootstrap` to `elgg-plugin.php` hooks array
+* `elgg_get_last_comment()` (removed in 4.x) replaced with `elgg_get_entities()` query in discussion view
+* `searchable` entity flag moved to `capabilities` section in `elgg-plugin.php`
+* Optional deps (`hypeLists`, `hypeStash`, `groups`) guarded with `function_exists()`/`class_exists()`/`elgg()->has()`
+* `discussions` and `groups` core plugins declared as `position: after` dependencies
+
 <a name="3.1.1"></a>
 ## [3.1.1](https://github.com/hypeJunctionPro/Elgg3-hypeDiscussions/compare/3.1.0...3.1.1) (2018-06-30)
 

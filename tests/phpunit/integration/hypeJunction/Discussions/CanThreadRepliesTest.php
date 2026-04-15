@@ -15,10 +15,12 @@ class CanThreadRepliesTest extends IntegrationTestCase {
     }
 
     public function down() {
+        elgg_get_session()->removeLoggedInUser();
     }
 
     protected function makeDiscussion(int $threads): Discussion {
         $user = $this->createUser();
+        elgg_get_session()->setLoggedInUser($user);
         $group = $this->createGroup();
 
         $d = new Discussion();

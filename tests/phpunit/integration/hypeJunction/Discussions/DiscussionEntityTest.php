@@ -15,10 +15,13 @@ class DiscussionEntityTest extends IntegrationTestCase {
     }
 
     public function down() {
+        elgg_get_session()->removeLoggedInUser();
     }
 
     public function testDiscussionSubtypeMapsToCustomClass(): void {
         $user = $this->createUser();
+        elgg_get_session()->setLoggedInUser($user);
+
         $group = $this->createGroup();
 
         $discussion = new Discussion();
@@ -42,6 +45,8 @@ class DiscussionEntityTest extends IntegrationTestCase {
 
     public function testDiscussionMetadataPersists(): void {
         $user = $this->createUser();
+        elgg_get_session()->setLoggedInUser($user);
+
         $group = $this->createGroup();
 
         $discussion = new Discussion();

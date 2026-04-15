@@ -71,7 +71,10 @@ class CanCreateDiscussionTest extends IntegrationTestCase {
         $site = elgg_get_site_entity();
 
         // Ensure setting off
-        elgg_set_plugin_setting('site_wide_discussions', '', 'hypediscussions');
+        $plugin = elgg_get_plugin_from_id('hypediscussions');
+        if ($plugin) {
+            $plugin->setSetting('site_wide_discussions', '');
+        }
 
         $hook = new Hook(elgg(), 'container_permissions_check', 'object', true, [
             'user' => $user,

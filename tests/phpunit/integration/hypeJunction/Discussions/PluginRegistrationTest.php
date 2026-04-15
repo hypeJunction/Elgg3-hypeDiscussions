@@ -58,6 +58,8 @@ class PluginRegistrationTest extends IntegrationTestCase {
 
     public function testDiscussionViewRenders(): void {
         $user = $this->createUser();
+        elgg_get_session()->setLoggedInUser($user);
+
         $group = $this->createGroup();
 
         $d = new \hypeJunction\Discussion();
@@ -67,11 +69,12 @@ class PluginRegistrationTest extends IntegrationTestCase {
         $d->title = 'View Test';
         $d->description = 'body';
         $d->status = 'open';
-        $d->save();
+        $this->assertNotFalse($d->save());
 
         $output = elgg_view('object/discussion', ['entity' => $d]);
         $this->assertIsString($output);
 
+        elgg_get_session()->removeLoggedInUser();
         $d->delete();
     }
 }

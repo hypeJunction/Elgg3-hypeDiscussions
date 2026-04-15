@@ -2,7 +2,7 @@
 
 namespace hypeJunction\Discussions;
 
-use Elgg\Hook;
+use Elgg\HooksRegistrationService\Hook;
 use Elgg\IntegrationTestCase;
 use hypeJunction\Discussion;
 
@@ -38,8 +38,10 @@ class CanThreadRepliesTest extends IntegrationTestCase {
         $user = $this->createUser();
         $d = $this->makeDiscussion(0);
 
-        $hook = new Hook($user, 'permissions_check:comment', 'object', true);
-        $hook->setParam('entity', $d);
+        $hook = new Hook(elgg(), 'permissions_check:comment', 'object', true, [
+            'user' => $user,
+            'entity' => $d,
+        ]);
 
         $handler = new CanThreadReplies();
         $this->assertFalse($handler($hook));
@@ -51,8 +53,10 @@ class CanThreadRepliesTest extends IntegrationTestCase {
         $user = $this->createUser();
         $entity = $this->createObject(['subtype' => 'blog']);
 
-        $hook = new Hook($user, 'permissions_check:comment', 'object', true);
-        $hook->setParam('entity', $entity);
+        $hook = new Hook(elgg(), 'permissions_check:comment', 'object', true, [
+            'user' => $user,
+            'entity' => $entity,
+        ]);
 
         $handler = new CanThreadReplies();
         $this->assertNull($handler($hook));

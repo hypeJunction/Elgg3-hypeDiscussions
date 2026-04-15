@@ -2,7 +2,7 @@
 
 namespace hypeJunction\Discussions;
 
-use Elgg\Hook;
+use Elgg\HooksRegistrationService\Hook;
 use Elgg\IntegrationTestCase;
 
 /**
@@ -21,9 +21,11 @@ class CanCreateDiscussionTest extends IntegrationTestCase {
         $user = $this->createUser();
         $group = $this->createGroup();
 
-        $hook = new Hook($user, 'container_permissions_check', 'object', true);
-        $hook->setParam('container', $group);
-        $hook->setParam('subtype', 'blog');
+        $hook = new Hook(elgg(), 'container_permissions_check', 'object', true, [
+            'user' => $user,
+            'container' => $group,
+            'subtype' => 'blog',
+        ]);
 
         $handler = new CanCreateDiscussion();
         $this->assertNull($handler($hook));
@@ -35,9 +37,11 @@ class CanCreateDiscussionTest extends IntegrationTestCase {
         $group->forum_enable = 'no';
         $group->save();
 
-        $hook = new Hook($user, 'container_permissions_check', 'object', true);
-        $hook->setParam('container', $group);
-        $hook->setParam('subtype', 'discussion');
+        $hook = new Hook(elgg(), 'container_permissions_check', 'object', true, [
+            'user' => $user,
+            'container' => $group,
+            'subtype' => 'discussion',
+        ]);
 
         $handler = new CanCreateDiscussion();
         $this->assertFalse($handler($hook));
@@ -52,9 +56,11 @@ class CanCreateDiscussionTest extends IntegrationTestCase {
         $group->admin_only_discussions_enable = 'yes';
         $group->save();
 
-        $hook = new Hook($other, 'container_permissions_check', 'object', true);
-        $hook->setParam('container', $group);
-        $hook->setParam('subtype', 'discussion');
+        $hook = new Hook(elgg(), 'container_permissions_check', 'object', true, [
+            'user' => $other,
+            'container' => $group,
+            'subtype' => 'discussion',
+        ]);
 
         $handler = new CanCreateDiscussion();
         $this->assertFalse($handler($hook));
@@ -65,11 +71,13 @@ class CanCreateDiscussionTest extends IntegrationTestCase {
         $site = elgg_get_site_entity();
 
         // Ensure setting off
-        elgg_set_plugin_setting('site_wide_discussions', '', 'hypeDiscussions');
+        elgg_set_plugin_setting('site_wide_discussions', '', 'hypediscussions');
 
-        $hook = new Hook($user, 'container_permissions_check', 'object', true);
-        $hook->setParam('container', $site);
-        $hook->setParam('subtype', 'discussion');
+        $hook = new Hook(elgg(), 'container_permissions_check', 'object', true, [
+            'user' => $user,
+            'container' => $site,
+            'subtype' => 'discussion',
+        ]);
 
         $handler = new CanCreateDiscussion();
         $this->assertFalse($handler($hook));

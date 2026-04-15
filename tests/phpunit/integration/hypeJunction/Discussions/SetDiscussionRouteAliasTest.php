@@ -2,7 +2,7 @@
 
 namespace hypeJunction\Discussions;
 
-use Elgg\Hook;
+use Elgg\HooksRegistrationService\Hook;
 use Elgg\IntegrationTestCase;
 
 /**
@@ -18,10 +18,10 @@ class SetDiscussionRouteAliasTest extends IntegrationTestCase {
     }
 
     public function testAliasesDiscussionsIdentifier(): void {
-        $hook = new Hook(null, 'route:rewrite', 'discussions', [
+        $hook = new Hook(elgg(), 'route:rewrite', 'discussions', [
             'identifier' => 'discussions',
             'segments' => ['view', '123'],
-        ]);
+        ], []);
 
         $handler = new SetDiscussionRouteAlias();
         $out = $handler($hook);
@@ -31,10 +31,10 @@ class SetDiscussionRouteAliasTest extends IntegrationTestCase {
     }
 
     public function testDefaultsEmptySegmentsToAll(): void {
-        $hook = new Hook(null, 'route:rewrite', 'discussions', [
+        $hook = new Hook(elgg(), 'route:rewrite', 'discussions', [
             'identifier' => 'discussions',
             'segments' => [],
-        ]);
+        ], []);
 
         $handler = new SetDiscussionRouteAlias();
         $out = $handler($hook);
@@ -44,10 +44,10 @@ class SetDiscussionRouteAliasTest extends IntegrationTestCase {
     }
 
     public function testLeavesOtherIdentifiersAlone(): void {
-        $hook = new Hook(null, 'route:rewrite', 'other', [
+        $hook = new Hook(elgg(), 'route:rewrite', 'other', [
             'identifier' => 'other',
             'segments' => ['foo'],
-        ]);
+        ], []);
 
         $handler = new SetDiscussionRouteAlias();
         $out = $handler($hook);

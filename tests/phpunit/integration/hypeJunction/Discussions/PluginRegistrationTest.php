@@ -16,7 +16,7 @@ class PluginRegistrationTest extends IntegrationTestCase {
     }
 
     public function testPluginIsActive(): void {
-        $plugin = elgg_get_plugin_from_id('hypeDiscussions');
+        $plugin = elgg_get_plugin_from_id('hypediscussions');
         $this->assertNotNull($plugin);
         $this->assertTrue($plugin->isActive());
     }

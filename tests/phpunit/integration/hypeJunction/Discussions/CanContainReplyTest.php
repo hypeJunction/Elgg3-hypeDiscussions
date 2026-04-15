@@ -2,7 +2,7 @@
 
 namespace hypeJunction\Discussions;
 
-use Elgg\Hook;
+use Elgg\HooksRegistrationService\Hook;
 use Elgg\IntegrationTestCase;
 use hypeJunction\Discussion;
 
@@ -38,9 +38,11 @@ class CanContainReplyTest extends IntegrationTestCase {
         $user = $this->createUser();
         $d = $this->makeDiscussion('open');
 
-        $hook = new Hook($user, 'container_logic_check', 'object', true);
-        $hook->setParam('container', $d);
-        $hook->setParam('subtype', 'blog');
+        $hook = new Hook(elgg(), 'container_logic_check', 'object', true, [
+            'user' => $user,
+            'container' => $d,
+            'subtype' => 'blog',
+        ]);
 
         $handler = new CanContainReply();
         $this->assertNull($handler($hook));
@@ -52,9 +54,11 @@ class CanContainReplyTest extends IntegrationTestCase {
         $user = $this->createUser();
         $container = $this->createObject(['subtype' => 'blog']);
 
-        $hook = new Hook($user, 'container_logic_check', 'object', true);
-        $hook->setParam('container', $container);
-        $hook->setParam('subtype', 'comment');
+        $hook = new Hook(elgg(), 'container_logic_check', 'object', true, [
+            'user' => $user,
+            'container' => $container,
+            'subtype' => 'comment',
+        ]);
 
         $handler = new CanContainReply();
         $this->assertNull($handler($hook));
@@ -64,9 +68,11 @@ class CanContainReplyTest extends IntegrationTestCase {
         $user = $this->createUser();
         $d = $this->makeDiscussion('closed');
 
-        $hook = new Hook($user, 'container_logic_check', 'object', true);
-        $hook->setParam('container', $d);
-        $hook->setParam('subtype', 'comment');
+        $hook = new Hook(elgg(), 'container_logic_check', 'object', true, [
+            'user' => $user,
+            'container' => $d,
+            'subtype' => 'comment',
+        ]);
 
         $handler = new CanContainReply();
         $this->assertFalse($handler($hook));
@@ -78,9 +84,11 @@ class CanContainReplyTest extends IntegrationTestCase {
         $user = $this->createUser();
         $d = $this->makeDiscussion('open');
 
-        $hook = new Hook($user, 'container_logic_check', 'object', true);
-        $hook->setParam('container', $d);
-        $hook->setParam('subtype', 'comment');
+        $hook = new Hook(elgg(), 'container_logic_check', 'object', true, [
+            'user' => $user,
+            'container' => $d,
+            'subtype' => 'comment',
+        ]);
 
         $handler = new CanContainReply();
         $this->assertNull($handler($hook));

@@ -65,7 +65,14 @@ if ($entity->status && $entity->status !== 'open') {
 
 $comment_text = '';
 
-$last_comment = elgg_get_last_comment($entity);
+$last_comments = elgg_get_entities([
+	'type' => 'object',
+	'subtype' => 'comment',
+	'container_guid' => $entity->guid,
+	'limit' => 1,
+	'order_by' => 'e.time_created DESC',
+]);
+$last_comment = $last_comments ? $last_comments[0] : null;
 if ($last_comment) {
 	$poster = $last_comment->getOwnerEntity();
 	$comment_time = elgg_view_friendly_time($last_comment->time_created);

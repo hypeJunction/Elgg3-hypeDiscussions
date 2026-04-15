@@ -35,22 +35,28 @@ class Bootstrap extends PluginBootstrap {
 	 */
 	public function init() {
 
-		elgg_register_collection('collection:object:discussion:all', DefaultDiscussionsCollection::class);
-		elgg_register_collection('collection:object:discussion:owner', OwnedDiscussionsCollection::class);
-		elgg_register_collection('collection:object:discussion:friends', FriendsDiscussionsCollection::class);
-		elgg_register_collection('collection:object:discussion:group', GroupDiscussionsCollection::class);
-		elgg_register_collection('collection:object:discussion:post', PostDiscussionsCollection::class);
+		if (function_exists('elgg_register_collection')) {
+			elgg_register_collection('collection:object:discussion:all', DefaultDiscussionsCollection::class);
+			elgg_register_collection('collection:object:discussion:owner', OwnedDiscussionsCollection::class);
+			elgg_register_collection('collection:object:discussion:friends', FriendsDiscussionsCollection::class);
+			elgg_register_collection('collection:object:discussion:group', GroupDiscussionsCollection::class);
+			elgg_register_collection('collection:object:discussion:post', PostDiscussionsCollection::class);
+		}
 
 		// Allow admin only discussion creation in groups
-		elgg()->group_tools->register('admin_only_discussions', [
-			'label' => elgg_echo('group:discussion:admin_only'),
-			'default_on' => false,
-		]);
+		if (elgg()->has('group_tools')) {
+			elgg()->group_tools->register('admin_only_discussions', [
+				'label' => elgg_echo('group:discussion:admin_only'),
+				'default_on' => false,
+			]);
+		}
 
 		elgg_extend_view('page/elements/comments', 'discussions/profile/module/discussions');
 		elgg_extend_view('page/components/interactions', 'discussions/profile/module/discussions');
 
-		Stash::instance()->register(new RelatedDiscussionsCounter());
+		if (class_exists(\hypeJunction\Stash\Stash::class)) {
+			Stash::instance()->register(new RelatedDiscussionsCounter());
+		}
 
 		elgg_unregister_notification_event('object', 'discussion');
 		elgg_register_notification_event('object', 'discussion', ['publish']);

@@ -3,12 +3,28 @@
 return [
 	'bootstrap' => \hypeJunction\Discussions\Bootstrap::class,
 
+	'plugin' => [
+		'dependencies' => [
+			'discussions' => [
+				'position' => 'after',
+			],
+			'groups' => [
+				'position' => 'after',
+			],
+		],
+	],
+
 	'entities' => [
 		'discussion' => [
 			'type' => 'object',
 			'subtype' => 'discussion',
 			'class' => \hypeJunction\Discussion::class,
-			'searchable' => true,
+		],
+	],
+
+	'capabilities' => [
+		'searchable' => [
+			'object:discussion' => true,
 		],
 	],
 

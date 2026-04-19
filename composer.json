@@ -4,7 +4,10 @@
 	"description": "Discussion threads for Elgg",
 	"homepage": "http://hypejunction.com",
 	"keywords": [
-		"elgg", "plugin", "discussions", "groups"
+		"elgg",
+		"plugin",
+		"discussions",
+		"groups"
 	],
 	"license": "GPL-2.0-or-later",
 	"authors": [
@@ -14,7 +17,10 @@
 		}
 	],
 	"extra": {
-		"installer-name": "hypediscussions"
+		"installer-name": "hypediscussions",
+		"elgg-plugin": {
+			"id": "hypediscussions"
+		}
 	},
 	"require": {
 		"php": ">=7.4",

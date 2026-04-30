@@ -1,5 +1,6 @@
 {
 	"name": "hypejunction/hypediscussions",
+	"version": "4.0.0",
 	"type": "elgg-plugin",
 	"description": "Discussion threads for Elgg",
 	"homepage": "http://hypejunction.com",

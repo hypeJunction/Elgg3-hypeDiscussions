@@ -6,6 +6,9 @@ use Elgg\Hook;
 use ElggDiscussion;
 use hypeJunction\Discussion;
 
+/**
+ * CanCreateReply class.
+ */
 class CanCreateReply {
 
 	/**

@@ -9,6 +9,9 @@ use Elgg\Hook;
 use ElggDiscussion;
 use hypeJunction\Discussion;
 
+/**
+ * CanThreadReplies class.
+ */
 class CanThreadReplies {
 
 	/**

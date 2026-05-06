@@ -6,6 +6,9 @@ use Elgg\Includer;
 use Elgg\PluginBootstrap;
 use hypeJunction\Stash\Stash;
 
+/**
+ * Bootstrap class.
+ */
 class Bootstrap extends PluginBootstrap {
 
 	/**
@@ -77,28 +80,23 @@ class Bootstrap extends PluginBootstrap {
 	 * {@inheritdoc}
 	 */
 	public function shutdown() {
-
 	}
 
 	/**
 	 * {@inheritdoc}
 	 */
 	public function activate() {
-
 	}
 
 	/**
 	 * {@inheritdoc}
 	 */
 	public function deactivate() {
-
 	}
 
 	/**
 	 * {@inheritdoc}
 	 */
 	public function upgrade() {
-
 	}
-
 }

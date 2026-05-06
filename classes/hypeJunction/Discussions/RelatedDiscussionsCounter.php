@@ -10,6 +10,9 @@ use hypeJunction\Discussion;
 use hypeJunction\Stash\Preloader;
 use hypeJunction\Stash\Stash;
 
+/**
+ * RelatedDiscussionsCounter class.
+ */
 class RelatedDiscussionsCounter implements Preloader {
 
 	const PROPERTY = 'related_discussions_total';

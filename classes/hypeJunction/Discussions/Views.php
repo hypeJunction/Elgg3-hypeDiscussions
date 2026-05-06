@@ -5,8 +5,17 @@ namespace hypeJunction\Discussions;
 use Elgg\Hook;
 use ElggGroup;
 
+/**
+ * Views class.
+ */
 class Views {
 
+	/**
+	 * Resolve missing container_guid on the discussion form from the entity or page owner.
+	 *
+	 * @param Hook $hook "view_vars", "forms/discussion/save"
+	 * @return array|null
+	 */
 	public static function filterDiscussionFormVars(Hook $hook) {
 
 		$return = $hook->getValue();
@@ -36,6 +45,12 @@ class Views {
 		return $return;
 	}
 
+	/**
+	 * Hide the group discussions widget when forums are disabled on the group.
+	 *
+	 * @param Hook $hook "view_vars", "page/layouts/widgets"
+	 * @return void
+	 */
 	public static function filterWidgetLayoutVars(Hook $hook) {
 
 		$owner = elgg_get_page_owner_entity();
@@ -43,5 +58,4 @@ class Views {
 			elgg_unregister_widget_type('group_discussions');
 		}
 	}
-
 }

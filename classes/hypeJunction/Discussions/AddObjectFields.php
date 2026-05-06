@@ -5,6 +5,9 @@ namespace hypeJunction\Discussions;
 use Elgg\Hook;
 use hypeJunction\Fields\MetaField;
 
+/**
+ * AddObjectFields class.
+ */
 class AddObjectFields {
 
 	/**
@@ -38,6 +41,5 @@ class AddObjectFields {
 			'priority' => 801,
 			'section' => 'sidebar',
 		]));
-
 	}
 }

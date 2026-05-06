@@ -2,12 +2,14 @@
 
 namespace hypeJunction\Discussions;
 
-
 use Elgg\Hook;
 use Elgg\Menu\MenuItems;
 use ElggMenuItem;
 use ElggUser;
 
+/**
+ * OwnerBlockMenu class.
+ */
 class OwnerBlockMenu {
 
 	/**
@@ -37,6 +39,5 @@ class OwnerBlockMenu {
 			]),
 			'text' => elgg_echo('discussions'),
 		]));
-
 	}
 }

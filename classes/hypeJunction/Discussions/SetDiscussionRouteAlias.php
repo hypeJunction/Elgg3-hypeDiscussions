@@ -4,6 +4,9 @@ namespace hypeJunction\Discussions;
 
 use Elgg\Hook;
 
+/**
+ * SetDiscussionRouteAlias class.
+ */
 class SetDiscussionRouteAlias {
 
 	/**

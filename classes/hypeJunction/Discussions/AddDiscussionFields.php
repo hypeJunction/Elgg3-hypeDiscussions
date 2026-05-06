@@ -5,6 +5,9 @@ namespace hypeJunction\Discussions;
 use Elgg\Hook;
 use hypeJunction\Fields\MetaField;
 
+/**
+ * AddDiscussionFields class.
+ */
 class AddDiscussionFields {
 
 	/**

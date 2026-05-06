@@ -14,6 +14,9 @@ use hypeJunction\Lists\Sorters\LikesCount;
 use hypeJunction\Lists\Sorters\ResponsesCount;
 use hypeJunction\Lists\Sorters\TimeCreated;
 
+/**
+ * DefaultDiscussionsCollection class.
+ */
 class DefaultDiscussionsCollection extends Collection {
 
 	/**

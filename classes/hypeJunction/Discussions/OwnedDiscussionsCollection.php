@@ -2,6 +2,9 @@
 
 namespace hypeJunction\Discussions;
 
+/**
+ * OwnedDiscussionsCollection class.
+ */
 class OwnedDiscussionsCollection extends DefaultDiscussionsCollection {
 
 	/**

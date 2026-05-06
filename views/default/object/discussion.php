@@ -43,7 +43,6 @@ if ($entity->discussed_post_guid) {
 			$vars['attachments'] = elgg_view_module('aside', elgg_echo('discussion:relates_to'), $view);
 		}
 	}
-
 }
 
 if ($entity->status && $entity->status !== 'open') {

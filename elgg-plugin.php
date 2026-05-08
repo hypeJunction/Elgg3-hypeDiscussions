@@ -4,7 +4,7 @@ return [
 	'bootstrap' => \hypeJunction\Discussions\Bootstrap::class,
 
 	'plugin' => [
-		'version' => '4.0.0',
+		'version' => '5.0.0',
 		'dependencies' => [
 			'discussions' => [
 				'position' => 'after',
@@ -74,7 +74,7 @@ return [
 		],
 	],
 
-	'hooks' => [
+	'events' => [
 		'route:rewrite' => [
 			'discussions' => [
 				[

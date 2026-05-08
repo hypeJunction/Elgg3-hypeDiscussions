@@ -2,42 +2,24 @@
 
 namespace hypeJunction\Discussions;
 
-use Elgg\Includer;
-use Elgg\PluginBootstrap;
+use Elgg\DefaultPluginBootstrap;
 use hypeJunction\Stash\Stash;
 
-/**
- * Bootstrap class.
- */
-class Bootstrap extends PluginBootstrap {
+class Bootstrap extends DefaultPluginBootstrap {
 
-	/**
-	 * Get plugin root
-	 * @return string
-	 */
-	protected function getRoot() {
-		return $this->plugin->getPath();
+	public function load(): void {
+		$pluginRoot = dirname(__DIR__, 3);
+		$autoloader = $pluginRoot . '/autoloader.php';
+		if (file_exists($autoloader)) {
+			require_once $autoloader;
+		}
+		$functions = $pluginRoot . '/lib/functions.php';
+		if (file_exists($functions)) {
+			require_once $functions;
+		}
 	}
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function load() {
-		Includer::requireFileOnce($this->getRoot() . '/autoloader.php');
-		Includer::requireFileOnce($this->getRoot() . '/lib/functions.php');
-	}
-
-	/**
-	 * {@inheritdoc}
-	 */
-	public function boot() {
-	}
-
-	/**
-	 * {@inheritdoc}
-	 */
-	public function init() {
-
+	public function init(): void {
 		if (function_exists('elgg_register_collection')) {
 			elgg_register_collection('collection:object:discussion:all', DefaultDiscussionsCollection::class);
 			elgg_register_collection('collection:object:discussion:owner', OwnedDiscussionsCollection::class);
@@ -46,7 +28,6 @@ class Bootstrap extends PluginBootstrap {
 			elgg_register_collection('collection:object:discussion:post', PostDiscussionsCollection::class);
 		}
 
-		// Allow admin only discussion creation in groups
 		if (elgg()->has('group_tools')) {
 			elgg()->group_tools->register('admin_only_discussions', [
 				'label' => elgg_echo('group:discussion:admin_only'),
@@ -57,7 +38,7 @@ class Bootstrap extends PluginBootstrap {
 		elgg_extend_view('page/elements/comments', 'discussions/profile/module/discussions');
 		elgg_extend_view('page/components/interactions', 'discussions/profile/module/discussions');
 
-		if (class_exists(\hypeJunction\Stash\Stash::class)) {
+		if (class_exists(Stash::class)) {
 			Stash::instance()->register(new RelatedDiscussionsCounter());
 		}
 
@@ -65,38 +46,9 @@ class Bootstrap extends PluginBootstrap {
 		elgg_register_notification_event('object', 'discussion', ['publish']);
 	}
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function ready() {
-		// Cleanup discussions and group_tools registrations
+	public function ready(): void {
 		elgg_unregister_event_handler('register', 'menu:filter:groups/all', 'discussion_setup_groups_filter_tabs');
 		elgg_unregister_widget_type('group_forum_topics');
-
 		elgg_unregister_event_handler('prepare', 'notification:create:object:discussion', 'discussion_prepare_notification');
-	}
-
-	/**
-	 * {@inheritdoc}
-	 */
-	public function shutdown() {
-	}
-
-	/**
-	 * {@inheritdoc}
-	 */
-	public function activate() {
-	}
-
-	/**
-	 * {@inheritdoc}
-	 */
-	public function deactivate() {
-	}
-
-	/**
-	 * {@inheritdoc}
-	 */
-	public function upgrade() {
 	}
 }

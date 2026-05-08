@@ -18,12 +18,27 @@ spl_autoload_register(function ($class) use ($testClassesDir) {
     }
 });
 
-// Load plugin autoloader if present
+// ElggDiscussion is defined by the core discussions plugin — not in composer autoload
+$coreModDir = $elggRoot . '/vendor/elgg/elgg/mod';
+spl_autoload_register(function ($class) use ($coreModDir) {
+    foreach (new \FilesystemIterator($coreModDir, \FilesystemIterator::SKIP_DOTS) as $pluginDir) {
+        $file = $pluginDir->getRealPath() . '/classes/' . str_replace('\\', '/', $class) . '.php';
+        if (file_exists($file)) {
+            require_once $file;
+            return;
+        }
+    }
+});
+
 $pluginRoot = dirname(__DIR__);
-if (file_exists($pluginRoot . '/vendor/autoload.php')) {
-    require_once $pluginRoot . '/vendor/autoload.php';
-} elseif (file_exists($pluginRoot . '/autoloader.php')) {
-    require_once $pluginRoot . '/autoloader.php';
-}
+spl_autoload_register(function ($class) use ($pluginRoot) {
+    if (strncmp($class, 'hypeJunction\\', 13) !== 0) {
+        return;
+    }
+    $file = $pluginRoot . '/classes/' . str_replace('\\', '/', $class) . '.php';
+    if (file_exists($file)) {
+        require_once $file;
+    }
+});
 
 \Elgg\Application::loadCore();

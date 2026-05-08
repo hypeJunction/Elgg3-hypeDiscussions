@@ -19,6 +19,10 @@ class CanContainReplyTest extends IntegrationTestCase {
         _elgg_services()->session_manager->removeLoggedInUser();
     }
 
+    /**
+     * @param string $status
+     * @return Discussion
+     */
     protected function makeDiscussion(string $status): Discussion {
         $user = $this->createUser();
         _elgg_services()->session_manager->setLoggedInUser($user);
@@ -36,6 +40,9 @@ class CanContainReplyTest extends IntegrationTestCase {
         return $d;
     }
 
+    /**
+     * @return void
+     */
     public function testReturnsNullForNonCommentSubtype(): void {
         $user = $this->createUser();
         $d = $this->makeDiscussion('open');
@@ -52,6 +59,9 @@ class CanContainReplyTest extends IntegrationTestCase {
         $d->delete();
     }
 
+    /**
+     * @return void
+     */
     public function testReturnsNullForNonDiscussionContainer(): void {
         $user = $this->createUser();
         $container = $this->createObject(['subtype' => 'blog']);
@@ -66,6 +76,9 @@ class CanContainReplyTest extends IntegrationTestCase {
         $this->assertNull($handler($hook));
     }
 
+    /**
+     * @return void
+     */
     public function testReturnsFalseWhenDiscussionClosed(): void {
         $user = $this->createUser();
         $d = $this->makeDiscussion('closed');
@@ -82,6 +95,9 @@ class CanContainReplyTest extends IntegrationTestCase {
         $d->delete();
     }
 
+    /**
+     * @return void
+     */
     public function testReturnsNullWhenDiscussionOpen(): void {
         $user = $this->createUser();
         $d = $this->makeDiscussion('open');

@@ -15,10 +15,16 @@ class LibraryFunctionsTest extends IntegrationTestCase {
     public function down() {
     }
 
+    /**
+     * @return void
+     */
     public function testElggGetTotalRelatedDiscussionsFunctionExists(): void {
         $this->assertTrue(function_exists('elgg_get_total_related_discussions'));
     }
 
+    /**
+     * @return void
+     */
     public function testElggGetTotalRelatedDiscussionsReturnsIntegerForEntity(): void {
         $entity = $this->createObject(['subtype' => 'blog']);
         $count = elgg_get_total_related_discussions($entity);

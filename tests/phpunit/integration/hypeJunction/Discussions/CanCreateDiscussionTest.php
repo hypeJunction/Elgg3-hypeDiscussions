@@ -17,6 +17,9 @@ class CanCreateDiscussionTest extends IntegrationTestCase {
     public function down() {
     }
 
+    /**
+     * @return void
+     */
     public function testReturnsNullForOtherSubtypes(): void {
         $user = $this->createUser();
         $group = $this->createGroup();
@@ -31,6 +34,9 @@ class CanCreateDiscussionTest extends IntegrationTestCase {
         $this->assertNull($handler($hook));
     }
 
+    /**
+     * @return void
+     */
     public function testReturnsFalseWhenGroupForumDisabled(): void {
         $user = $this->createUser();
         $group = $this->createGroup();
@@ -47,6 +53,9 @@ class CanCreateDiscussionTest extends IntegrationTestCase {
         $this->assertFalse($handler($hook));
     }
 
+    /**
+     * @return void
+     */
     public function testNonAdminCannotCreateWhenAdminOnlyDiscussions(): void {
         $owner = $this->createUser();
         $other = $this->createUser();
@@ -66,6 +75,9 @@ class CanCreateDiscussionTest extends IntegrationTestCase {
         $this->assertFalse($handler($hook));
     }
 
+    /**
+     * @return void
+     */
     public function testNonGroupContainerRequiresSiteWideSetting(): void {
         $user = $this->createUser();
         $site = elgg_get_site_entity();

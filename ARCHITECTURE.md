@@ -32,15 +32,15 @@ Loaded via `elgg-plugin.php` `bootstrap` key.
 | Phase      | Responsibility |
 |------------|---------------|
 | `load()`   | Require `autoloader.php` and `lib/functions.php` |
-| `boot()`   | Empty (hooks declared in elgg-plugin.php) |
+| `boot()`   | Empty (events declared in elgg-plugin.php) |
 | `init()`   | Register hypeLists collections, group_tools option, view extensions, Stash preloader, notification events |
 | `ready()`  | Unregister conflicting core hook handlers and widget types |
 
-## Hook Handlers
+## Event Handlers
 
-All declared in the `hooks` section of `elgg-plugin.php`.
+All declared in the `events` section of `elgg-plugin.php`.
 
-| Hook                              | Handler                         | Purpose |
+| Event                             | Handler                         | Purpose |
 |-----------------------------------|---------------------------------|---------|
 | `route:rewrite, discussions`      | `SetDiscussionRouteAlias`       | Alias old `/discussions/…` URLs to `/discussion/…` |
 | `fields, object:discussion`       | `AddDiscussionFields`           | Add status/threads/discussed_post_guid fields to the edit form |

@@ -17,6 +17,9 @@ class SetDiscussionRouteAliasTest extends IntegrationTestCase {
     public function down() {
     }
 
+    /**
+     * @return void
+     */
     public function testAliasesDiscussionsIdentifier(): void {
         $hook = new Event(elgg(), 'route:rewrite', 'discussions', [
             'identifier' => 'discussions',
@@ -30,6 +33,9 @@ class SetDiscussionRouteAliasTest extends IntegrationTestCase {
         $this->assertEquals(['view', '123'], $out['segments']);
     }
 
+    /**
+     * @return void
+     */
     public function testDefaultsEmptySegmentsToAll(): void {
         $hook = new Event(elgg(), 'route:rewrite', 'discussions', [
             'identifier' => 'discussions',
@@ -43,6 +49,9 @@ class SetDiscussionRouteAliasTest extends IntegrationTestCase {
         $this->assertEquals(['all'], $out['segments']);
     }
 
+    /**
+     * @return void
+     */
     public function testLeavesOtherIdentifiersAlone(): void {
         $hook = new Event(elgg(), 'route:rewrite', 'other', [
             'identifier' => 'other',

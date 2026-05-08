@@ -18,6 +18,9 @@ class DiscussionEntityTest extends IntegrationTestCase {
         _elgg_services()->session_manager->removeLoggedInUser();
     }
 
+    /**
+     * @return void
+     */
     public function testDiscussionSubtypeMapsToCustomClass(): void {
         $user = $this->createUser();
         _elgg_services()->session_manager->setLoggedInUser($user);
@@ -43,6 +46,9 @@ class DiscussionEntityTest extends IntegrationTestCase {
         $discussion->delete();
     }
 
+    /**
+     * @return void
+     */
     public function testDiscussionMetadataPersists(): void {
         $user = $this->createUser();
         _elgg_services()->session_manager->setLoggedInUser($user);
@@ -68,6 +74,9 @@ class DiscussionEntityTest extends IntegrationTestCase {
         $discussion->delete();
     }
 
+    /**
+     * @return void
+     */
     public function testSubtypeConstantMatchesElggDiscussion(): void {
         $this->assertEquals('discussion', Discussion::SUBTYPE);
     }

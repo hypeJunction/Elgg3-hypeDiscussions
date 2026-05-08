@@ -18,6 +18,10 @@ class CanThreadRepliesTest extends IntegrationTestCase {
         _elgg_services()->session_manager->removeLoggedInUser();
     }
 
+    /**
+     * @param int $threads
+     * @return Discussion
+     */
     protected function makeDiscussion(int $threads): Discussion {
         $user = $this->createUser();
         _elgg_services()->session_manager->setLoggedInUser($user);
@@ -36,6 +40,9 @@ class CanThreadRepliesTest extends IntegrationTestCase {
         return $d;
     }
 
+    /**
+     * @return void
+     */
     public function testReturnsFalseWhenThreadingDisabled(): void {
         $user = $this->createUser();
         $d = $this->makeDiscussion(0);
@@ -51,6 +58,9 @@ class CanThreadRepliesTest extends IntegrationTestCase {
         $d->delete();
     }
 
+    /**
+     * @return void
+     */
     public function testReturnsNullForNonDiscussionEntity(): void {
         $user = $this->createUser();
         $entity = $this->createObject(['subtype' => 'blog']);

@@ -15,12 +15,18 @@ class PluginRegistrationTest extends IntegrationTestCase {
     public function down() {
     }
 
+    /**
+     * @return void
+     */
     public function testPluginIsActive(): void {
         $plugin = elgg_get_plugin_from_id('hypediscussions');
         $this->assertNotNull($plugin);
         $this->assertTrue($plugin->isActive());
     }
 
+    /**
+     * @return void
+     */
     public function testDiscussionRoutesRegistered(): void {
         $routes = _elgg_services()->routes;
 
@@ -31,11 +37,17 @@ class PluginRegistrationTest extends IntegrationTestCase {
         $this->assertNotNull($routes->get('collection:object:discussion:group'));
     }
 
+    /**
+     * @return void
+     */
     public function testDiscussionWidgetRegistered(): void {
         $widgets = elgg_get_widget_types('profile');
         $this->assertArrayHasKey('discussion', $widgets);
     }
 
+    /**
+     * @return void
+     */
     public function testPluginEventHandlersRegistered(): void {
         $events = _elgg_services()->events;
         $this->assertTrue(
@@ -56,6 +68,9 @@ class PluginRegistrationTest extends IntegrationTestCase {
         );
     }
 
+    /**
+     * @return void
+     */
     public function testDiscussionViewRenders(): void {
         $user = $this->createUser();
         _elgg_services()->session_manager->setLoggedInUser($user);

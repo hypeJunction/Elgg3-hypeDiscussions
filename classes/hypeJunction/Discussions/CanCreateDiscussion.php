@@ -2,7 +2,7 @@
 
 namespace hypeJunction\Discussions;
 
-use Elgg\Hook;
+use Elgg\Event;
 
 /**
  * CanCreateDiscussion class.
@@ -12,16 +12,16 @@ class CanCreateDiscussion {
 	/**
 	 * Check group settings to disallow creation of new discussions
 	 *
-	 * @elgg_plugin_hook container_permissions_check object
+	 * @elgg_event_handler container_permissions_check object
 	 *
-	 * @param Hook $hook Hook
+	 * @param Event $event Hook
 	 * @return bool|null
 	 */
-	public function __invoke(Hook $hook) {
+	public function __invoke(Event $event) {
 
-		$user = $hook->getUserParam();
-		$container = $hook->getParam('container');
-		$subtype = $hook->getParam('subtype');
+		$user = $event->getUserParam();
+		$container = $event->getParam('container');
+		$subtype = $event->getParam('subtype');
 
 		if ($subtype !== 'discussion') {
 			return null;

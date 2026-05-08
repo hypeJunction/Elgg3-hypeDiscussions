@@ -5,7 +5,7 @@
 
 namespace hypeJunction\Discussions;
 
-use Elgg\Hook;
+use Elgg\Event;
 use ElggDiscussion;
 use hypeJunction\Discussion;
 
@@ -17,16 +17,16 @@ class CanThreadReplies {
 	/**
 	 * Enable discussion threads
 	 *
-	 * @elgg_plugin_hook permissions_check:comment object
+	 * @elgg_event_handler permissions_check:comment object
 	 *
-	 * @param Hook $hook Hook
+	 * @param Event $event Hook
 	 *
 	 * @return bool
 	 */
-	public function __invoke(Hook $hook) {
+	public function __invoke(Event $event) {
 
-		$entity = $hook->getEntityParam();
-		$user = $hook->getUserParam();
+		$entity = $event->getEntityParam();
+		$user = $event->getUserParam();
 
 		while ($entity instanceof \ElggComment) {
 			$entity = $entity->getContainerEntity();

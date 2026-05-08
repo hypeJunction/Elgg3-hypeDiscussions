@@ -4,7 +4,6 @@ namespace hypeJunction\Discussions;
 
 use Elgg\Event;
 use Elgg\EventsService;
-use Elgg\PluginHooksService;
 use ElggComment;
 use hypeJunction\Discussion;
 use hypeJunction\Stash\Preloader;
@@ -34,7 +33,7 @@ class RelatedDiscussionsCounter implements Preloader {
 	/**
 	 * {@inheritdoc}
 	 */
-	public function up(Stash $stash, EventsService $events, PluginHooksService $hooks) {
+	public function up(Stash $stash, EventsService $events) {
 		$callback = function (Event $event) use ($stash) {
 			elgg_call(
 				ELGG_IGNORE_ACCESS,

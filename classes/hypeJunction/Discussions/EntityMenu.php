@@ -2,7 +2,7 @@
 
 namespace hypeJunction\Discussions;
 
-use Elgg\Hook;
+use Elgg\Event;
 
 /**
  * EntityMenu class.
@@ -12,12 +12,12 @@ class EntityMenu {
 	/**
 	 * Setup entity menu
 	 *
-	 * @param Hook $hook Hook
+	 * @param Event $event Hook
 	 * @return void
 	 */
-	public function __invoke(Hook $hook) {
-		$entity = $hook->getEntityParam();
-		$menu = $hook->getValue();
+	public function __invoke(Event $event) {
+		$entity = $event->getEntityParam();
+		$menu = $event->getValue();
 		/* @var $menu \Elgg\Menu\MenuItems */
 
 		if (!$entity instanceof \ElggObject) {

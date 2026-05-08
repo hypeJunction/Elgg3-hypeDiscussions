@@ -2,7 +2,7 @@
 
 namespace hypeJunction\Discussions;
 
-use Elgg\Hook;
+use Elgg\Event;
 use Elgg\Menu\MenuItems;
 use ElggMenuItem;
 use ElggUser;
@@ -15,13 +15,13 @@ class OwnerBlockMenu {
 	/**
 	 * Setup owner block menu
 	 *
-	 * @param Hook $hook Hook
+	 * @param Event $event Hook
 	 * @return void
 	 */
-	public function __invoke(Hook $hook) {
+	public function __invoke(Event $event) {
 
-		$entity = $hook->getEntityParam();
-		$menu = $hook->getValue();
+		$entity = $event->getEntityParam();
+		$menu = $event->getValue();
 		/* @var $menu MenuItems */
 
 		if (!$entity instanceof ElggUser) {

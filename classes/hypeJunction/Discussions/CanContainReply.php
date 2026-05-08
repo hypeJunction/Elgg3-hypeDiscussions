@@ -2,7 +2,7 @@
 
 namespace hypeJunction\Discussions;
 
-use Elgg\Hook;
+use Elgg\Event;
 
 /**
  * CanContainReply class.
@@ -12,16 +12,16 @@ class CanContainReply {
 	/**
 	 * Disable replies in closed discussions
 	 *
-	 * @elgg_plugin_hook container_logic_check object
+	 * @elgg_event_handler container_logic_check object
 	 *
-	 * @param Hook $hook Hook
+	 * @param Event $event Hook
 	 * @return bool|null
 	 */
-	public function __invoke(Hook $hook) {
+	public function __invoke(Event $event) {
 
-		$user = $hook->getUserParam();
-		$container = $hook->getParam('container');
-		$subtype = $hook->getParam('subtype');
+		$user = $event->getUserParam();
+		$container = $event->getParam('container');
+		$subtype = $event->getParam('subtype');
 
 		if ($subtype !== 'comment' || !$container instanceof \ElggDiscussion) {
 			return null;

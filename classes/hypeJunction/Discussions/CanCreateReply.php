@@ -2,7 +2,7 @@
 
 namespace hypeJunction\Discussions;
 
-use Elgg\Hook;
+use Elgg\Event;
 use ElggDiscussion;
 use hypeJunction\Discussion;
 
@@ -14,15 +14,15 @@ class CanCreateReply {
 	/**
 	 * Discussion replies should not inherit permissions from discussion but from the parent (group)
 	 *
-	 * @elgg_plugin_hook permissions_check:comment object
+	 * @elgg_event_handler permissions_check:comment object
 	 *
-	 * @param Hook $hook Hoook
+	 * @param Event $event Hoook
 	 * @return bool|null
 	 */
-	public function __invoke(Hook $hook) {
+	public function __invoke(Event $event) {
 
-		$user = $hook->getUserParam();
-		$entity = $hook->getEntityParam();
+		$user = $event->getUserParam();
+		$entity = $event->getEntityParam();
 
 		if (!$entity instanceof ElggDiscussion) {
 			return null;

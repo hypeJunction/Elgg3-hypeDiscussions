@@ -70,10 +70,10 @@ class Bootstrap extends PluginBootstrap {
 	 */
 	public function ready() {
 		// Cleanup discussions and group_tools registrations
-		elgg_unregister_plugin_hook_handler('register', 'menu:filter:groups/all', 'discussion_setup_groups_filter_tabs');
+		elgg_unregister_event_handler('register', 'menu:filter:groups/all', 'discussion_setup_groups_filter_tabs');
 		elgg_unregister_widget_type('group_forum_topics');
 
-		elgg_unregister_plugin_hook_handler('prepare', 'notification:create:object:discussion', 'discussion_prepare_notification');
+		elgg_unregister_event_handler('prepare', 'notification:create:object:discussion', 'discussion_prepare_notification');
 	}
 
 	/**

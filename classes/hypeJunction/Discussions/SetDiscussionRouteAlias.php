@@ -2,7 +2,7 @@
 
 namespace hypeJunction\Discussions;
 
-use Elgg\Hook;
+use Elgg\Event;
 
 /**
  * SetDiscussionRouteAlias class.
@@ -12,13 +12,13 @@ class SetDiscussionRouteAlias {
 	/**
 	 * Alias 'discussions' with 'discussion' route
 	 *
-	 * @param Hook $hook Hook
+	 * @param Event $event Hook
 	 *
 	 * @return array
 	 */
-	public function __invoke(Hook $hook) {
+	public function __invoke(Event $event) {
 
-		$return = $hook->getValue();
+		$return = $event->getValue();
 
 		$identifier = elgg_extract('identifier', $return);
 		$segments = elgg_extract('segments', $return);

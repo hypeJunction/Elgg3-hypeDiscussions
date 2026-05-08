@@ -36,29 +36,29 @@ class PluginRegistrationTest extends IntegrationTestCase {
         $this->assertArrayHasKey('discussion', $widgets);
     }
 
-    public function testPluginHookHandlersRegistered(): void {
-        $hooks = _elgg_services()->hooks;
+    public function testPluginEventHandlersRegistered(): void {
+        $events = _elgg_services()->events;
         $this->assertTrue(
-            $hooks->hasHandler('container_logic_check', 'object'),
+            $events->hasHandler('container_logic_check', 'object'),
             'container_logic_check,object handler should be registered'
         );
         $this->assertTrue(
-            $hooks->hasHandler('container_permissions_check', 'object'),
+            $events->hasHandler('container_permissions_check', 'object'),
             'container_permissions_check,object handler should be registered'
         );
         $this->assertTrue(
-            $hooks->hasHandler('permissions_check:comment', 'object'),
+            $events->hasHandler('permissions_check:comment', 'object'),
             'permissions_check:comment,object handler should be registered'
         );
         $this->assertTrue(
-            $hooks->hasHandler('register', 'menu:site'),
+            $events->hasHandler('register', 'menu:site'),
             'menu:site handler should be registered'
         );
     }
 
     public function testDiscussionViewRenders(): void {
         $user = $this->createUser();
-        elgg_get_session()->setLoggedInUser($user);
+        _elgg_services()->session_manager->setLoggedInUser($user);
 
         $group = $this->createGroup();
 
@@ -74,7 +74,7 @@ class PluginRegistrationTest extends IntegrationTestCase {
         $output = elgg_view('object/discussion', ['entity' => $d]);
         $this->assertIsString($output);
 
-        elgg_get_session()->removeLoggedInUser();
+        _elgg_services()->session_manager->removeLoggedInUser();
         $d->delete();
     }
 }

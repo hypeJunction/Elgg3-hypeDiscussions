@@ -2,7 +2,7 @@
 
 namespace hypeJunction\Discussions;
 
-use Elgg\HooksRegistrationService\Hook;
+use Elgg\Event;
 use Elgg\IntegrationTestCase;
 use hypeJunction\Discussion;
 
@@ -16,12 +16,12 @@ class CanContainReplyTest extends IntegrationTestCase {
     }
 
     public function down() {
-        elgg_get_session()->removeLoggedInUser();
+        _elgg_services()->session_manager->removeLoggedInUser();
     }
 
     protected function makeDiscussion(string $status): Discussion {
         $user = $this->createUser();
-        elgg_get_session()->setLoggedInUser($user);
+        _elgg_services()->session_manager->setLoggedInUser($user);
         $group = $this->createGroup();
 
         $d = new Discussion();
@@ -40,7 +40,7 @@ class CanContainReplyTest extends IntegrationTestCase {
         $user = $this->createUser();
         $d = $this->makeDiscussion('open');
 
-        $hook = new Hook(elgg(), 'container_logic_check', 'object', true, [
+        $hook = new Event(elgg(), 'container_logic_check', 'object', true, [
             'user' => $user,
             'container' => $d,
             'subtype' => 'blog',
@@ -56,7 +56,7 @@ class CanContainReplyTest extends IntegrationTestCase {
         $user = $this->createUser();
         $container = $this->createObject(['subtype' => 'blog']);
 
-        $hook = new Hook(elgg(), 'container_logic_check', 'object', true, [
+        $hook = new Event(elgg(), 'container_logic_check', 'object', true, [
             'user' => $user,
             'container' => $container,
             'subtype' => 'comment',
@@ -70,7 +70,7 @@ class CanContainReplyTest extends IntegrationTestCase {
         $user = $this->createUser();
         $d = $this->makeDiscussion('closed');
 
-        $hook = new Hook(elgg(), 'container_logic_check', 'object', true, [
+        $hook = new Event(elgg(), 'container_logic_check', 'object', true, [
             'user' => $user,
             'container' => $d,
             'subtype' => 'comment',
@@ -86,7 +86,7 @@ class CanContainReplyTest extends IntegrationTestCase {
         $user = $this->createUser();
         $d = $this->makeDiscussion('open');
 
-        $hook = new Hook(elgg(), 'container_logic_check', 'object', true, [
+        $hook = new Event(elgg(), 'container_logic_check', 'object', true, [
             'user' => $user,
             'container' => $d,
             'subtype' => 'comment',

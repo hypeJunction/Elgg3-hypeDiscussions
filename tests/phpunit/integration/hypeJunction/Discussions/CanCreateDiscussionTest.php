@@ -2,7 +2,7 @@
 
 namespace hypeJunction\Discussions;
 
-use Elgg\HooksRegistrationService\Hook;
+use Elgg\Event;
 use Elgg\IntegrationTestCase;
 
 /**
@@ -21,7 +21,7 @@ class CanCreateDiscussionTest extends IntegrationTestCase {
         $user = $this->createUser();
         $group = $this->createGroup();
 
-        $hook = new Hook(elgg(), 'container_permissions_check', 'object', true, [
+        $hook = new Event(elgg(), 'container_permissions_check', 'object', true, [
             'user' => $user,
             'container' => $group,
             'subtype' => 'blog',
@@ -37,7 +37,7 @@ class CanCreateDiscussionTest extends IntegrationTestCase {
         $group->forum_enable = 'no';
         $group->save();
 
-        $hook = new Hook(elgg(), 'container_permissions_check', 'object', true, [
+        $hook = new Event(elgg(), 'container_permissions_check', 'object', true, [
             'user' => $user,
             'container' => $group,
             'subtype' => 'discussion',
@@ -56,7 +56,7 @@ class CanCreateDiscussionTest extends IntegrationTestCase {
         $group->admin_only_discussions_enable = 'yes';
         $group->save();
 
-        $hook = new Hook(elgg(), 'container_permissions_check', 'object', true, [
+        $hook = new Event(elgg(), 'container_permissions_check', 'object', true, [
             'user' => $other,
             'container' => $group,
             'subtype' => 'discussion',
@@ -76,7 +76,7 @@ class CanCreateDiscussionTest extends IntegrationTestCase {
             $plugin->setSetting('site_wide_discussions', '');
         }
 
-        $hook = new Hook(elgg(), 'container_permissions_check', 'object', true, [
+        $hook = new Event(elgg(), 'container_permissions_check', 'object', true, [
             'user' => $user,
             'container' => $site,
             'subtype' => 'discussion',

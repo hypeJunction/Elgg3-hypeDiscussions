@@ -2,7 +2,7 @@
 
 namespace hypeJunction\Discussions;
 
-use Elgg\HooksRegistrationService\Hook;
+use Elgg\Event;
 use Elgg\IntegrationTestCase;
 use hypeJunction\Discussion;
 
@@ -15,12 +15,12 @@ class CanThreadRepliesTest extends IntegrationTestCase {
     }
 
     public function down() {
-        elgg_get_session()->removeLoggedInUser();
+        _elgg_services()->session_manager->removeLoggedInUser();
     }
 
     protected function makeDiscussion(int $threads): Discussion {
         $user = $this->createUser();
-        elgg_get_session()->setLoggedInUser($user);
+        _elgg_services()->session_manager->setLoggedInUser($user);
         $group = $this->createGroup();
 
         $d = new Discussion();
@@ -40,7 +40,7 @@ class CanThreadRepliesTest extends IntegrationTestCase {
         $user = $this->createUser();
         $d = $this->makeDiscussion(0);
 
-        $hook = new Hook(elgg(), 'permissions_check:comment', 'object', true, [
+        $hook = new Event(elgg(), 'permissions_check:comment', 'object', true, [
             'user' => $user,
             'entity' => $d,
         ]);
@@ -55,7 +55,7 @@ class CanThreadRepliesTest extends IntegrationTestCase {
         $user = $this->createUser();
         $entity = $this->createObject(['subtype' => 'blog']);
 
-        $hook = new Hook(elgg(), 'permissions_check:comment', 'object', true, [
+        $hook = new Event(elgg(), 'permissions_check:comment', 'object', true, [
             'user' => $user,
             'entity' => $entity,
         ]);

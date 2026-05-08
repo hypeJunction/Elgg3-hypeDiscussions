@@ -1,3 +1,18 @@
+<a name="5.0.0"></a>
+# [5.0.0] — Elgg 5.x migration (2026-05-08)
+
+### Breaking Changes
+
+* Requires Elgg 5.x (PHP 8.2+)
+* `elgg/elgg` constraint bumped to `^5.0`
+
+### Migrations
+
+* `\Elgg\Hook` → `\Elgg\Event` in all handler class type hints and `use` imports
+* `elgg-plugin.php` `'hooks'` key renamed to `'events'`
+* `elgg_unregister_plugin_hook_handler()` → `elgg_unregister_event_handler()` in Bootstrap
+* PHPUnit tests: `ElggSession::setLoggedInUser()` → `_elgg_services()->session_manager->setLoggedInUser()`
+
 <a name="4.0.0"></a>
 # [4.0.0] — Elgg 4.x migration (2026-04-14)
 

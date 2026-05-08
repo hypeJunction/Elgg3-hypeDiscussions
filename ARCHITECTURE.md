@@ -104,6 +104,6 @@ All extend `DefaultDiscussionsCollection` which extends `hypeJunction\Lists\Coll
 
 ## Data Migration
 
-No data migration scripts are required for the 3.x → 4.x upgrade. No
-serialized metadata fields and no schema changes. The `status`, `threads`,
-and `discussed_post_guid` metadata are stored as plain strings/integers.
+No data migration scripts are required for the 3.x → 4.x or 4.x → 5.x
+upgrades. No serialized metadata fields and no schema changes. The `status`,
+`threads`, and `discussed_post_guid` metadata are stored as plain strings/integers.

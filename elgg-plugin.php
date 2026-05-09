@@ -4,7 +4,7 @@ return [
 	'bootstrap' => \hypeJunction\Discussions\Bootstrap::class,
 
 	'plugin' => [
-		'version' => '6.0.0',
+		'version' => '7.0.0',
 		'dependencies' => [
 			'discussions' => [
 				'position' => 'after',

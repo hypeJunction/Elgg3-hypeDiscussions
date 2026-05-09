@@ -38,7 +38,7 @@ $subtypes = (array) $collection->getSubtypes();
 $subtype = array_shift($subtypes);
 
 foreach ($collection->getMenu() as $item) {
-	$item->addLinkClass('elgg-button elgg-button-action');
+	$item->addLinkClass('elgg-button');
 	elgg_register_menu_item('title', $item);
 }
 

@@ -170,5 +170,12 @@ return [
 				],
 			],
 		],
+		'seeds' => [
+			'database' => [
+				[
+					'handler' => [\hypeJunction\Discussions\Seeder::class, 'addSeed'],
+				],
+			],
+		],
 	],
 ];

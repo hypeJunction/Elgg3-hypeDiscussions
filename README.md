@@ -1,6 +1,6 @@
 Discussions Threads for Elgg
 ============================
-![Elgg 5.x](https://img.shields.io/badge/Elgg-5.x-orange.svg?style=flat-square)
+![Elgg 7.x](https://img.shields.io/badge/Elgg-7.x-orange.svg?style=flat-square)
 
 ## Features
 
@@ -11,3 +11,9 @@ Discussions Threads for Elgg
  * Adds discussions widget to the group and user profile
  * Restricted discussion (only group admins can start new discussions)
  * Enables discussions outside of groups
+
+## Compatibility
+
+| Plugin version | Elgg version |
+|---|---|
+| current | 7.x |

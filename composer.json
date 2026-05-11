@@ -1,43 +1,42 @@
 {
-	"name": "hypejunction/hypediscussions",
-	"version": "7.0.0",
-	"type": "elgg-plugin",
-	"description": "Discussion threads for Elgg",
-	"homepage": "https://github.com/hypeJunction/Elgg3-hypeDiscussions",
-	"keywords": [
-		"elgg",
-		"plugin",
-		"discussions",
-		"groups"
-	],
-	"license": "GPL-2.0-or-later",
-	"authors": [
-		{
-			"name": "Ismayil Khayredinov",
-			"email": "ismayil.khayredinov@gmail.com"
-		}
-	],
-	"extra": {
-		"installer-name": "hypediscussions",
-		"elgg-plugin": {
-			"id": "hypediscussions"
-		}
-	},
-	"require": {
-		"php": ">=8.3",
-		"elgg/elgg": "~7.0.0",
-		"composer/installers": "^2.0",
-		"ext-intl": "*"
-	},
-	"autoload": {
-		"psr-4": {
-			"hypeJunction\\Discussions\\": "classes/hypeJunction/Discussions/",
-			"hypeJunction\\": "classes/hypeJunction/"
-		}
-	},
-	"config": {
-		"allow-plugins": {
-			"composer/installers": true
-		}
-	}
+    "name": "hypejunction/hypediscussions",
+    "type": "elgg-plugin",
+    "description": "Discussion threads for Elgg",
+    "homepage": "https://github.com/hypeJunction/Elgg3-hypeDiscussions",
+    "keywords": [
+        "elgg",
+        "plugin",
+        "discussions",
+        "groups"
+    ],
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Ismayil Khayredinov",
+            "email": "ismayil.khayredinov@gmail.com"
+        }
+    ],
+    "extra": {
+        "installer-name": "hypediscussions",
+        "elgg-plugin": {
+            "id": "hypediscussions"
+        }
+    },
+    "require": {
+        "php": ">=8.3",
+        "elgg/elgg": "~7.0.0",
+        "composer/installers": "^2.0",
+        "ext-intl": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "hypeJunction\\Discussions\\": "classes/hypeJunction/Discussions/",
+            "hypeJunction\\": "classes/hypeJunction/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true
+        }
+    }
 }

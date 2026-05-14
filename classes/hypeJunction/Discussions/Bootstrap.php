@@ -43,7 +43,7 @@ class Bootstrap extends DefaultPluginBootstrap {
 		}
 
 		elgg_unregister_notification_event('object', 'discussion');
-		elgg_register_notification_event('object', 'discussion', ['publish']);
+		elgg_register_notification_event('object', 'discussion', 'publish');
 	}
 
 	public function ready(): void {

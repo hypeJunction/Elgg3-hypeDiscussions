@@ -50,4 +50,22 @@ class Seeder extends Seed {
 		$seeds[] = self::class;
 		return $seeds;
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public static function getType(): string {
+		return 'discussion';
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function getCountOptions(): array {
+		return [
+			'type' => 'object',
+			'subtype' => 'discussion',
+		];
+	}
+
 }

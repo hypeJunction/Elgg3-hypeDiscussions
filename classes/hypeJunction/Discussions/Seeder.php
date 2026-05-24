@@ -4,12 +4,21 @@ namespace hypeJunction\Discussions;
 
 use Elgg\Database\Seeds\Seed;
 
+/**
+ * Discussion entity seeder.
+ */
 class Seeder extends Seed {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public static function getType(): string {
 		return 'discussion';
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public function getCountOptions(): array {
 		return [
 			'type' => 'object',
@@ -17,6 +26,9 @@ class Seeder extends Seed {
 		];
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public function seed(): void {
 		$this->advance($this->getCount());
 
@@ -36,6 +48,9 @@ class Seeder extends Seed {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public function unseed(): void {
 		$entities = elgg_get_entities([
 			'type' => 'object',
@@ -56,6 +71,12 @@ class Seeder extends Seed {
 		}
 	}
 
+	/**
+	 * Register this seed with the seeds list.
+	 *
+	 * @param \Elgg\Event $event 'seeds', 'database' event
+	 * @return array
+	 */
 	public static function addSeed(\Elgg\Event $event) {
 		$seeds = $event->getValue();
 		$seeds[] = self::class;

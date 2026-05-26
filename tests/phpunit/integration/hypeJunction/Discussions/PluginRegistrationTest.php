@@ -19,7 +19,7 @@ class PluginRegistrationTest extends IntegrationTestCase {
      * @return void
      */
     public function testPluginIsActive(): void {
-        $plugin = elgg_get_plugin_from_id('hypediscussions');
+        $plugin = \elgg_get_plugin_from_id('hypediscussions');
         $this->assertNotNull($plugin);
         $this->assertTrue($plugin->isActive());
     }
@@ -28,7 +28,7 @@ class PluginRegistrationTest extends IntegrationTestCase {
      * @return void
      */
     public function testDiscussionRoutesRegistered(): void {
-        $routes = _elgg_services()->routes;
+        $routes = \_elgg_services()->routes;
 
         $this->assertNotNull($routes->get('add:object:discussion'));
         $this->assertNotNull($routes->get('edit:object:discussion'));
@@ -41,7 +41,7 @@ class PluginRegistrationTest extends IntegrationTestCase {
      * @return void
      */
     public function testDiscussionWidgetRegistered(): void {
-        $widgets = elgg_get_widget_types('profile');
+        $widgets = \elgg_get_widget_types('profile');
         $this->assertArrayHasKey('discussion', $widgets);
     }
 
@@ -49,7 +49,7 @@ class PluginRegistrationTest extends IntegrationTestCase {
      * @return void
      */
     public function testPluginEventHandlersRegistered(): void {
-        $events = _elgg_services()->events;
+        $events = \_elgg_services()->events;
         $this->assertTrue(
             $events->hasHandler('container_logic_check', 'object'),
             'container_logic_check,object handler should be registered'
@@ -73,7 +73,7 @@ class PluginRegistrationTest extends IntegrationTestCase {
      */
     public function testDiscussionViewRenders(): void {
         $user = $this->createUser();
-        _elgg_services()->session_manager->setLoggedInUser($user);
+        \_elgg_services()->session_manager->setLoggedInUser($user);
 
         $group = $this->createGroup();
 
@@ -86,10 +86,10 @@ class PluginRegistrationTest extends IntegrationTestCase {
         $d->status = 'open';
         $this->assertNotFalse($d->save());
 
-        $output = elgg_view('object/discussion', ['entity' => $d]);
+        $output = \elgg_view('object/discussion', ['entity' => $d]);
         $this->assertIsString($output);
 
-        _elgg_services()->session_manager->removeLoggedInUser();
+        \_elgg_services()->session_manager->removeLoggedInUser();
         $d->delete();
     }
 }

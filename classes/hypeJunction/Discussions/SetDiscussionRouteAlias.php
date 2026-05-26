@@ -20,8 +20,8 @@ class SetDiscussionRouteAlias {
 
 		$return = $event->getValue();
 
-		$identifier = elgg_extract('identifier', $return);
-		$segments = elgg_extract('segments', $return);
+		$identifier = \elgg_extract('identifier', $return);
+		$segments = \elgg_extract('segments', $return);
 
 		if ($identifier == 'discussions') {
 			$return['identifier'] = 'discussion';

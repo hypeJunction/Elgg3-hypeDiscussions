@@ -20,8 +20,8 @@ class SiteMenu {
 
 		$menu->add(\ElggMenuItem::factory([
 			'name' => 'discussion',
-			'href' => elgg_generate_url('collection:object:discussion:all'),
-			'text' => elgg_echo('discussions'),
+			'href' => \elgg_generate_url('collection:object:discussion:all'),
+			'text' => \elgg_echo('discussions'),
 			'icon' => 'question',
 		]));
 	}

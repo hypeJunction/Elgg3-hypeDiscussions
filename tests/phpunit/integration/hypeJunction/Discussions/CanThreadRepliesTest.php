@@ -15,7 +15,7 @@ class CanThreadRepliesTest extends IntegrationTestCase {
     }
 
     public function down() {
-        _elgg_services()->session_manager->removeLoggedInUser();
+        \_elgg_services()->session_manager->removeLoggedInUser();
     }
 
     /**
@@ -24,7 +24,7 @@ class CanThreadRepliesTest extends IntegrationTestCase {
      */
     protected function makeDiscussion(int $threads): Discussion {
         $user = $this->createUser();
-        _elgg_services()->session_manager->setLoggedInUser($user);
+        \_elgg_services()->session_manager->setLoggedInUser($user);
         $group = $this->createGroup();
 
         $d = new Discussion();

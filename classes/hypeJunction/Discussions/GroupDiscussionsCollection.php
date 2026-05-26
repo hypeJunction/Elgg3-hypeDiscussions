@@ -34,7 +34,7 @@ class GroupDiscussionsCollection extends DefaultDiscussionsCollection {
 	 * {@inheritdoc}
 	 */
 	public function getURL() {
-		return elgg_generate_url($this->getId(), [
+		return \elgg_generate_url($this->getId(), [
 			'guid' => $this->target->guid,
 		]);
 	}

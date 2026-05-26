@@ -26,7 +26,7 @@ class Seeder extends Seed {
 	}
 
 	public function unseed() {
-		$entities = elgg_get_entities([
+		$entities = \elgg_get_entities([
 			'type' => 'object',
 			'subtype' => 'discussion',
 			'metadata_name_value_pairs' => [

@@ -20,8 +20,8 @@ class Views {
 
 		$return = $event->getValue();
 
-		$guid = elgg_extract('guid', $return);
-		$container_guid = elgg_extract('container_guid', $return);
+		$guid = \elgg_extract('guid', $return);
+		$container_guid = \elgg_extract('container_guid', $return);
 		if ($container_guid) {
 			return;
 		}
@@ -35,7 +35,7 @@ class Views {
 			$return['entity'] = $entity;
 			$container_guid = $entity->getContainerGUID();
 		} else {
-			$page_owner = elgg_get_page_owner_entity();
+			$page_owner = \elgg_get_page_owner_entity();
 			if ($page_owner instanceof ElggGroup) {
 				$container_guid = $page_owner->guid;
 			}
@@ -53,9 +53,9 @@ class Views {
 	 */
 	public static function filterWidgetLayoutVars(Event $event) {
 
-		$owner = elgg_get_page_owner_entity();
+		$owner = \elgg_get_page_owner_entity();
 		if ($owner instanceof ElggGroup && $owner->forum_enable != 'yes') {
-			elgg_unregister_widget_type('group_discussions');
+			\elgg_unregister_widget_type('group_discussions');
 		}
 	}
 }

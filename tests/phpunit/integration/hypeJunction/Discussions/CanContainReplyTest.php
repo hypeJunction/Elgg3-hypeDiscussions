@@ -16,7 +16,7 @@ class CanContainReplyTest extends IntegrationTestCase {
     }
 
     public function down() {
-        _elgg_services()->session_manager->removeLoggedInUser();
+        \_elgg_services()->session_manager->removeLoggedInUser();
     }
 
     /**
@@ -25,7 +25,7 @@ class CanContainReplyTest extends IntegrationTestCase {
      */
     protected function makeDiscussion(string $status): Discussion {
         $user = $this->createUser();
-        _elgg_services()->session_manager->setLoggedInUser($user);
+        \_elgg_services()->session_manager->setLoggedInUser($user);
         $group = $this->createGroup();
 
         $d = new Discussion();

@@ -28,16 +28,16 @@ class OwnerBlockMenu {
 			return;
 		}
 
-		if (!elgg_get_plugin_setting('site_wide_discussions', 'hypediscussions')) {
+		if (!\elgg_get_plugin_setting('site_wide_discussions', 'hypediscussions')) {
 			return;
 		}
 
 		$menu->add(ElggMenuItem::factory([
 			'name' => 'discussions',
-			'href' => elgg_generate_url('collection:object:discussion:owner', [
+			'href' => \elgg_generate_url('collection:object:discussion:owner', [
 				'username' => $entity->username,
 			]),
-			'text' => elgg_echo('discussions'),
+			'text' => \elgg_echo('discussions'),
 		]));
 	}
 }

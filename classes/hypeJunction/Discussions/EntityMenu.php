@@ -24,7 +24,7 @@ class EntityMenu {
 			return;
 		}
 
-		if (!elgg_get_plugin_setting('post_discussions', 'hypediscussions')) {
+		if (!\elgg_get_plugin_setting('post_discussions', 'hypediscussions')) {
 			return;
 		}
 
@@ -34,15 +34,15 @@ class EntityMenu {
 
 		$container = $entity->getContainerEntity();
 		if (!$container instanceof \ElggGroup) {
-			$container = elgg_get_logged_in_user_entity();
+			$container = \elgg_get_logged_in_user_entity();
 		}
 
 		if ($container && $container->canWriteToContainer(0, 'object', 'discussion')) {
 			$menu->add(\ElggMenuItem::factory([
 				'name' => 'discuss',
 				'icon' => 'question',
-				'text' => elgg_echo('discussion:discuss'),
-				'href' => elgg_generate_url('add:object:discussion', [
+				'text' => \elgg_echo('discussion:discuss'),
+				'href' => \elgg_generate_url('add:object:discussion', [
 					'guid' => $container->guid,
 					'discussed_post_guid' => $entity->guid,
 				]),

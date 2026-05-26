@@ -27,7 +27,7 @@ class LibraryFunctionsTest extends IntegrationTestCase {
      */
     public function testElggGetTotalRelatedDiscussionsReturnsIntegerForEntity(): void {
         $entity = $this->createObject(['subtype' => 'blog']);
-        $count = elgg_get_total_related_discussions($entity);
+        $count = \elgg_get_total_related_discussions($entity);
         // Counter may return int or null depending on Stash state; accept both
         // but verify it does not throw.
         $this->assertTrue($count === null || is_int($count) || is_numeric($count));

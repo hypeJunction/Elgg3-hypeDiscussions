@@ -68,10 +68,10 @@ class CanCreateDiscussionTest extends IntegrationTestCase {
 
     public function testNonGroupContainerRequiresSiteWideSetting(): void {
         $user = $this->createUser();
-        $site = elgg_get_site_entity();
+        $site = \elgg_get_site_entity();
 
         // Ensure setting off
-        $plugin = elgg_get_plugin_from_id('hypediscussions');
+        $plugin = \elgg_get_plugin_from_id('hypediscussions');
         if ($plugin) {
             $plugin->setSetting('site_wide_discussions', '');
         }

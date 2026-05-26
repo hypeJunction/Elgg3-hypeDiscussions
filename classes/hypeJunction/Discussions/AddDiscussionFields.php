@@ -31,21 +31,21 @@ class AddDiscussionFields {
 			'default' => 'open',
 			'value' => 'closed',
 			'checked' => $entity->status === 'closed',
-			'label' => elgg_echo('field:object:discussion:status'),
+			'label' => \elgg_echo('field:object:discussion:status'),
 			'is_profile_field' => false,
 			'switch' => true,
 			'section' => 'sidebar',
 			'priority' => 50,
 		]));
 
-		if (elgg_get_plugin_setting('max_comment_depth', 'hypeinteractions') > 1) {
+		if (\elgg_get_plugin_setting('max_comment_depth', 'hypeinteractions') > 1) {
 			$fields->add('threads', new MetaField([
 				'#label' => false,
 				'type' => 'checkbox',
 				'default' => 0,
 				'value' => 1,
 				'checked' => (bool) $entity->threads,
-				'label' => elgg_echo('field:object:discussion:threads'),
+				'label' => \elgg_echo('field:object:discussion:threads'),
 				'is_profile_field' => false,
 				'switch' => true,
 				'section' => 'sidebar',
@@ -53,7 +53,7 @@ class AddDiscussionFields {
 			]));
 		}
 
-		if (elgg_get_plugin_setting('post_discussions', 'hypediscussions') && !$entity->guid) {
+		if (\elgg_get_plugin_setting('post_discussions', 'hypediscussions') && !$entity->guid) {
 			$fields->add('discussed_post_guid', new MetaField([
 				'type' => 'guids',
 				'options' => [

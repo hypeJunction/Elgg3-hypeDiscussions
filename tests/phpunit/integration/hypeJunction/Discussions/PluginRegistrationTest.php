@@ -16,13 +16,13 @@ class PluginRegistrationTest extends IntegrationTestCase {
     }
 
     public function testPluginIsActive(): void {
-        $plugin = elgg_get_plugin_from_id('hypediscussions');
+        $plugin = \elgg_get_plugin_from_id('hypediscussions');
         $this->assertNotNull($plugin);
         $this->assertTrue($plugin->isActive());
     }
 
     public function testDiscussionRoutesRegistered(): void {
-        $routes = _elgg_services()->routes;
+        $routes = \_elgg_services()->routes;
 
         $this->assertNotNull($routes->get('add:object:discussion'));
         $this->assertNotNull($routes->get('edit:object:discussion'));
@@ -32,12 +32,12 @@ class PluginRegistrationTest extends IntegrationTestCase {
     }
 
     public function testDiscussionWidgetRegistered(): void {
-        $widgets = elgg_get_widget_types('profile');
+        $widgets = \elgg_get_widget_types('profile');
         $this->assertArrayHasKey('discussion', $widgets);
     }
 
     public function testPluginHookHandlersRegistered(): void {
-        $hooks = _elgg_services()->hooks;
+        $hooks = \_elgg_services()->hooks;
         $this->assertTrue(
             $hooks->hasHandler('container_logic_check', 'object'),
             'container_logic_check,object handler should be registered'
@@ -58,7 +58,7 @@ class PluginRegistrationTest extends IntegrationTestCase {
 
     public function testDiscussionViewRenders(): void {
         $user = $this->createUser();
-        elgg_get_session()->setLoggedInUser($user);
+        \elgg_get_session()->setLoggedInUser($user);
 
         $group = $this->createGroup();
 
@@ -71,10 +71,10 @@ class PluginRegistrationTest extends IntegrationTestCase {
         $d->status = 'open';
         $this->assertNotFalse($d->save());
 
-        $output = elgg_view('object/discussion', ['entity' => $d]);
+        $output = \elgg_view('object/discussion', ['entity' => $d]);
         $this->assertIsString($output);
 
-        elgg_get_session()->removeLoggedInUser();
+        \elgg_get_session()->removeLoggedInUser();
         $d->delete();
     }
 }

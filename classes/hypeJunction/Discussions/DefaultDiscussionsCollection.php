@@ -30,7 +30,7 @@ class DefaultDiscussionsCollection extends Collection {
 	 * {@inheritdoc}
 	 */
 	public function getDisplayName() {
-		return elgg_echo('collection:object:discussion');
+		return \elgg_echo('collection:object:discussion');
 	}
 
 	/**
@@ -69,7 +69,7 @@ class DefaultDiscussionsCollection extends Collection {
 	 * {@inheritdoc}
 	 */
 	public function getURL() {
-		return elgg_generate_url($this->getId());
+		return \elgg_generate_url($this->getId());
 	}
 
 	/**
@@ -78,7 +78,7 @@ class DefaultDiscussionsCollection extends Collection {
 	public function getListOptions(array $options = []) {
 		return array_merge([
 			'full_view' => false,
-			'no_results' => elgg_echo('collection:object:discussion:no_results'),
+			'no_results' => \elgg_echo('collection:object:discussion:no_results'),
 			'pagination_type' => 'infinite',
 			'list_class' => 'post-list',
 			'list_type' => get_input('list_type', 'list'),
@@ -90,7 +90,7 @@ class DefaultDiscussionsCollection extends Collection {
 	 * {@inheritdoc}
 	 */
 	public function getFilterOptions() {
-		if (!elgg_is_logged_in()) {
+		if (!\elgg_is_logged_in()) {
 			return [];
 		}
 

@@ -15,12 +15,12 @@ class DiscussionEntityTest extends IntegrationTestCase {
     }
 
     public function down() {
-        elgg_get_session()->removeLoggedInUser();
+        \elgg_get_session()->removeLoggedInUser();
     }
 
     public function testDiscussionSubtypeMapsToCustomClass(): void {
         $user = $this->createUser();
-        elgg_get_session()->setLoggedInUser($user);
+        \elgg_get_session()->setLoggedInUser($user);
 
         $group = $this->createGroup();
 
@@ -32,7 +32,7 @@ class DiscussionEntityTest extends IntegrationTestCase {
         $discussion->description = 'Body';
         $this->assertNotFalse($discussion->save());
 
-        _elgg_services()->entityCache->delete($discussion->guid);
+        \_elgg_services()->entityCache->delete($discussion->guid);
         $loaded = get_entity($discussion->guid);
 
         $this->assertInstanceOf(ElggDiscussion::class, $loaded);
@@ -45,7 +45,7 @@ class DiscussionEntityTest extends IntegrationTestCase {
 
     public function testDiscussionMetadataPersists(): void {
         $user = $this->createUser();
-        elgg_get_session()->setLoggedInUser($user);
+        \elgg_get_session()->setLoggedInUser($user);
 
         $group = $this->createGroup();
 
@@ -59,7 +59,7 @@ class DiscussionEntityTest extends IntegrationTestCase {
         $discussion->threads = 1;
         $this->assertNotFalse($discussion->save());
 
-        _elgg_services()->entityCache->delete($discussion->guid);
+        \_elgg_services()->entityCache->delete($discussion->guid);
         $loaded = get_entity($discussion->guid);
 
         $this->assertEquals('open', $loaded->status);

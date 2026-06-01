@@ -11,5 +11,8 @@ use hypeJunction\Stash\Stash;
  * @return int
  */
 function elgg_get_total_related_discussions(ElggEntity $entity) {
+	if (!class_exists(Stash::class)) {
+		return 0;
+	}
 	return Stash::instance()->get(RelatedDiscussionsCounter::PROPERTY, $entity);
 }

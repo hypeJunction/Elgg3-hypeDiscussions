@@ -72,7 +72,9 @@ class Bootstrap extends PluginBootstrap {
 		elgg_extend_view('page/elements/comments', 'discussions/profile/module/discussions');
 		elgg_extend_view('page/components/interactions', 'discussions/profile/module/discussions');
 
-		Stash::instance()->register(new RelatedDiscussionsCounter());
+		if (class_exists(Stash::class)) {
+			Stash::instance()->register(new RelatedDiscussionsCounter());
+		}
 
 		elgg_unregister_notification_event('object', 'discussion');
 		elgg_register_notification_event('object', 'discussion', ['publish']);

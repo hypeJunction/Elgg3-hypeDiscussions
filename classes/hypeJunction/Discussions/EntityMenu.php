@@ -38,7 +38,7 @@ class EntityMenu {
 		}
 
 		if ($container && $container->canWriteToContainer(0, 'object', 'discussion')) {
-			$menu->add(\ElggMenuItem::factory([
+			$menu[] = \ElggMenuItem::factory([
 				'name' => 'discuss',
 				'icon' => 'question',
 				'text' => elgg_echo('discussion:discuss'),
@@ -47,7 +47,9 @@ class EntityMenu {
 					'discussed_post_guid' => $entity->guid,
 				]),
 				'priority' => 100,
-			]));
+			]);
 		}
+
+		return $menu;
 	}
 }

@@ -32,12 +32,14 @@ class OwnerBlockMenu {
 			return;
 		}
 
-		$menu->add(ElggMenuItem::factory([
+		$menu[] = ElggMenuItem::factory([
 			'name' => 'discussions',
 			'href' => elgg_generate_url('collection:object:discussion:owner', [
 				'username' => $entity->username,
 			]),
 			'text' => elgg_echo('discussions'),
-		]));
+		]);
+
+		return $menu;
 	}
 }

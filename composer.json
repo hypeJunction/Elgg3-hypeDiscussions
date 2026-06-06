@@ -1,6 +1,5 @@
 {
 	"name": "hypejunction/hypediscussions",
-	"version": "7.0.0",
 	"type": "elgg-plugin",
 	"description": "Discussion threads for Elgg",
 	"homepage": "https://github.com/hypeJunction/Elgg3-hypeDiscussions",

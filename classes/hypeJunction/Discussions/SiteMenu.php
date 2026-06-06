@@ -18,11 +18,13 @@ class SiteMenu {
 	public function __invoke(Event $event) {
 		$menu = $event->getValue();
 
-		$menu->add(\ElggMenuItem::factory([
+		$menu[] = \ElggMenuItem::factory([
 			'name' => 'discussion',
 			'href' => elgg_generate_url('collection:object:discussion:all'),
 			'text' => elgg_echo('discussions'),
 			'icon' => 'question',
-		]));
+		]);
+
+		return $menu;
 	}
 }

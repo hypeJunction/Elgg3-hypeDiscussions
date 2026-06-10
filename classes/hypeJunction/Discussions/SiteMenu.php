@@ -13,7 +13,7 @@ class SiteMenu {
 	 * Register site menu item
 	 *
 	 * @param Event $event Hook
-	 * @return void
+	 * @return \Elgg\Menu\MenuItems|\ElggMenuItem[]
 	 */
 	public function __invoke(Event $event) {
 		$menu = $event->getValue();

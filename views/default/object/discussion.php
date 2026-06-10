@@ -8,7 +8,7 @@ if (!$entity instanceof ElggDiscussion) {
 $full_view = elgg_extract('full_view', $vars);
 
 if ($entity->discussed_post_guid) {
-	$discussed = get_entity($entity->discussed_post_guid);
+	$discussed = get_entity((int) $entity->discussed_post_guid);
 
 	if ($discussed) {
 		$vars['imprint'][] = [

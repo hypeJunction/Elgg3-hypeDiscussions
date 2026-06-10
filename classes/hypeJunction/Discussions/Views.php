@@ -28,7 +28,7 @@ class Views {
 
 		$entity = null;
 		if ($guid) {
-			$entity = get_entity($guid);
+			$entity = get_entity((int) $guid);
 		}
 
 		if ($entity) {

@@ -7,7 +7,7 @@ if (!\hypeJunction\Capabilities\Roles::can('read', 'post_discussions')) {
 $request = elgg_extract('request', $vars);
 /* @var $request \Elgg\Request */
 
-$guid = $request->getParam('guid');
+$guid = (int) $request->getParam('guid');
 elgg_entity_gatekeeper($guid);
 
 $entity = get_entity($guid);

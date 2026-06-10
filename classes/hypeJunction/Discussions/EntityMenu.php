@@ -13,7 +13,7 @@ class EntityMenu {
 	 * Setup entity menu
 	 *
 	 * @param Event $event Hook
-	 * @return void
+	 * @return \Elgg\Menu\MenuItems|\ElggMenuItem[]
 	 */
 	public function __invoke(Event $event) {
 		$entity = $event->getEntityParam();
@@ -21,15 +21,15 @@ class EntityMenu {
 		/* @var $menu \Elgg\Menu\MenuItems */
 
 		if (!$entity instanceof \ElggObject) {
-			return;
+			return $menu;
 		}
 
 		if (!elgg_get_plugin_setting('post_discussions', 'hypediscussions')) {
-			return;
+			return $menu;
 		}
 
 		if (!$entity->enable_discussions) {
-			return;
+			return $menu;
 		}
 
 		$container = $entity->getContainerEntity();

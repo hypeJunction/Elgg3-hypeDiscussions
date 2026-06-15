@@ -1,6 +1,6 @@
 <?php
 
-if (!\hypeJunction\Capabilities\Roles::can('read', 'post_discussions')) {
+if (class_exists('hypeJunction\\Capabilities\\Roles') && !\hypeJunction\Capabilities\Roles::can('read', 'post_discussions')) {
 	throw new \Elgg\Exceptions\Http\PageNotFoundException();
 }
 

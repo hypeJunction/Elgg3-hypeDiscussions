@@ -4,7 +4,7 @@ if (!elgg_get_plugin_setting('post_discussions', 'hypeDiscussions')) {
 	return;
 }
 
-if (!\hypeJunction\Capabilities\Roles::can('read', 'post_discussions')) {
+if (class_exists('hypeJunction\\Capabilities\\Roles') && !\hypeJunction\Capabilities\Roles::can('read', 'post_discussions')) {
 	return;
 }
 

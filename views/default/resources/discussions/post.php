@@ -1,13 +1,13 @@
 <?php
 
-if (!\hypeJunction\Capabilities\Roles::can('read', 'post_discussions')) {
+if (class_exists('hypeJunction\\Capabilities\\Roles') && !\hypeJunction\Capabilities\Roles::can('read', 'post_discussions')) {
 	throw new \Elgg\Exceptions\Http\PageNotFoundException();
 }
 
 $request = elgg_extract('request', $vars);
 /* @var $request \Elgg\Request */
 
-$guid = $request->getParam('guid');
+$guid = (int) $request->getParam('guid');
 elgg_entity_gatekeeper($guid);
 
 $entity = get_entity($guid);
@@ -54,6 +54,6 @@ $layout = elgg_view_layout('default', [
 	'target' => $entity,
 ]);
 
-echo elgg_view_page($title, $layout, 'default', [
+echo elgg_view_page($collection->getDisplayName(), $layout, 'default', [
 	'collection' => $collection,
 ]);

@@ -16,7 +16,7 @@ class OwnerBlockMenu {
 	 * Setup owner block menu
 	 *
 	 * @param Event $event Hook
-	 * @return void
+	 * @return MenuItems|ElggMenuItem[]
 	 */
 	public function __invoke(Event $event) {
 
@@ -25,19 +25,21 @@ class OwnerBlockMenu {
 		/* @var $menu MenuItems */
 
 		if (!$entity instanceof ElggUser) {
-			return;
+			return $menu;
 		}
 
 		if (!elgg_get_plugin_setting('site_wide_discussions', 'hypediscussions')) {
-			return;
+			return $menu;
 		}
 
-		$menu->add(ElggMenuItem::factory([
+		$menu[] = ElggMenuItem::factory([
 			'name' => 'discussions',
 			'href' => elgg_generate_url('collection:object:discussion:owner', [
 				'username' => $entity->username,
 			]),
 			'text' => elgg_echo('discussions'),
-		]));
+		]);
+
+		return $menu;
 	}
 }

@@ -5,20 +5,30 @@ namespace hypeJunction\Discussions;
 use Elgg\DefaultPluginBootstrap;
 use hypeJunction\Stash\Stash;
 
+/**
+ * Plugin bootstrap.
+ */
 class Bootstrap extends DefaultPluginBootstrap {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public function load(): void {
 		$pluginRoot = dirname(__DIR__, 3);
 		$autoloader = $pluginRoot . '/autoloader.php';
 		if (file_exists($autoloader)) {
 			require_once $autoloader;
 		}
+
 		$functions = $pluginRoot . '/lib/functions.php';
 		if (file_exists($functions)) {
 			require_once $functions;
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public function init(): void {
 		if (function_exists('elgg_register_collection')) {
 			elgg_register_collection('collection:object:discussion:all', DefaultDiscussionsCollection::class);
@@ -46,6 +56,9 @@ class Bootstrap extends DefaultPluginBootstrap {
 		elgg_register_notification_event('object', 'discussion', 'publish');
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public function ready(): void {
 		elgg_unregister_event_handler('register', 'menu:filter:groups/all', 'discussion_setup_groups_filter_tabs');
 		elgg_unregister_widget_type('group_forum_topics');

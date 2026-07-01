@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/lib/functions.php';
+
 return [
 	'bootstrap' => \hypeJunction\Discussions\Bootstrap::class,
 
@@ -77,104 +79,72 @@ return [
 	'events' => [
 		'route:rewrite' => [
 			'discussions' => [
-				[
-					'handler' => \hypeJunction\Discussions\SetDiscussionRouteAlias::class,
-				],
+				\hypeJunction\Discussions\SetDiscussionRouteAlias::class => [],
 			],
 		],
 		'uses:comments' => [
 			'object:discussion' => [
-				[
-					'handler' => [\Elgg\Values::class, 'getTrue'],
-				],
+				\Elgg\Values::class . '::getTrue' => [],
 			],
 		],
 		'uses:cover' => [
 			'object:discussion' => [
-				[
-					'handler' => [\Elgg\Values::class, 'getTrue'],
-				],
+				\Elgg\Values::class . '::getTrue' => [],
 			],
 		],
 		'uses:river' => [
 			'object:discussion' => [
-				[
-					'handler' => [\Elgg\Values::class, 'getTrue'],
-				],
+				\Elgg\Values::class . '::getTrue' => [],
 			],
 		],
 		'allow_attachments' => [
 			'object:blog' => [
-				[
-					'handler' => [\Elgg\Values::class, 'getTrue'],
-				],
+				\Elgg\Values::class . '::getTrue' => [],
 			],
 		],
 		'fields' => [
 			'object:discussion' => [
-				[
-					'handler' => \hypeJunction\Discussions\AddDiscussionFields::class,
-				],
+				\hypeJunction\Discussions\AddDiscussionFields::class => [],
 			],
 			'object' => [
-				[
-					'handler' => \hypeJunction\Discussions\AddObjectFields::class,
-				],
+				\hypeJunction\Discussions\AddObjectFields::class => [],
 			],
 		],
 		'register' => [
 			'menu:site' => [
-				[
-					'handler' => \hypeJunction\Discussions\SiteMenu::class,
-				],
+				\hypeJunction\Discussions\SiteMenu::class => [],
 			],
 			'menu:owner_block' => [
-				[
-					'handler' => \hypeJunction\Discussions\OwnerBlockMenu::class,
-				],
+				\hypeJunction\Discussions\OwnerBlockMenu::class => [],
 			],
 			'menu:entity' => [
-				[
-					'handler' => \hypeJunction\Discussions\EntityMenu::class,
-				],
+				\hypeJunction\Discussions\EntityMenu::class => [],
 			],
 		],
 		'permissions_check:comment' => [
 			'object' => [
-				[
-					'handler' => \hypeJunction\Discussions\CanThreadReplies::class,
-				],
-				[
-					'handler' => \hypeJunction\Discussions\CanCreateReply::class,
-				],
+				\hypeJunction\Discussions\CanThreadReplies::class => [],
+				\hypeJunction\Discussions\CanCreateReply::class => [],
 			],
 		],
 		'container_logic_check' => [
 			'object' => [
-				[
-					'handler' => \hypeJunction\Discussions\CanContainReply::class,
-				],
+				\hypeJunction\Discussions\CanContainReply::class => [],
 			],
 		],
 		'container_permissions_check' => [
 			'object' => [
-				[
-					'handler' => \hypeJunction\Discussions\CanCreateDiscussion::class,
-				],
+				\hypeJunction\Discussions\CanCreateDiscussion::class => [],
 			],
 		],
 		'prepare' => [
 			'notification:publish:object:discussion' => [
-				[
-					'handler' => 'discussion_prepare_notification',
-				],
+				'discussion_prepare_notification' => [],
 			],
 		],
 		'seeds' => [
 			'database' => [
-				[
-					'handler' => [\hypeJunction\Discussions\Seeder::class, 'addSeed'],
-				],
+				\hypeJunction\Discussions\Seeder::class . '::addSeed' => [],
 			],
 		],
 	],

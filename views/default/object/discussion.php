@@ -88,4 +88,19 @@ $by_line = elgg_view('object/elements/imprint', $vars);
 
 $vars['subtitle'] = "$by_line $comment_text";
 
-echo elgg_view('post/view', $vars);
+// hypePost's 'post/view' rendering layer is not available on this install, so
+// render through Elgg core's object elements. object/elements/summary builds the
+// title permalink from $entity->getURL() (view:object:discussion →
+// /discussion/view/{guid}), which is what the group/collection listing links to.
+$vars['icon'] = elgg_extract('icon', $vars, true);
+
+if ($full_view) {
+	$vars['body'] = elgg_view('output/longtext', ['value' => $entity->description]);
+	$vars['show_summary'] = true;
+
+	echo elgg_view('object/elements/full', $vars);
+} else {
+	$vars['content'] = elgg_get_excerpt((string) $entity->description);
+
+	echo elgg_view('object/elements/summary', $vars);
+}

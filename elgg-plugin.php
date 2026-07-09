@@ -46,7 +46,7 @@ return [
 		],
 		'view:object:discussion' => [
 			'path' => '/discussion/view/{guid}/{title?}',
-			'resource' => 'post/view',
+			'resource' => 'discussion/view',
 		],
 		'collection:object:discussion:all' => [
 			'path' => '/discussion/all',

@@ -43,7 +43,10 @@ class CanCreateReply {
 				return false;
 			}
 
-			return $group->canWriteToContainer($user->guid);
+			// Elgg 7 requires BOTH $type and $subtype; a bare call throws
+			// "canWriteToContainer requires $type and $subtype to be set".
+			// A discussion reply is stored as an object/comment in the group.
+			return $group->canWriteToContainer($user->guid, 'object', 'comment');
 		}
 	}
 }

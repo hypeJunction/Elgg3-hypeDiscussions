@@ -75,6 +75,28 @@ class CanThreadRepliesTest extends IntegrationTestCase {
     }
 
     /**
+     * The handler is registered on permissions_check:comment, and
+     * UserCapabilities::canComment() TRIGGERS that event. Calling canComment()
+     * from inside the handler therefore recursed until the stack blew:
+     * "Maximum call stack size ... reached. Infinite recursion?" — a hard 500 on
+     * /discussion/all for every logged-in user. Go through the real API so a
+     * reintroduced canComment() call blows up here rather than in production.
+     *
+     * @return void
+     */
+    public function testThreadedDiscussionPermissionCheckDoesNotRecurse(): void {
+        $user = $this->createUser();
+        _elgg_services()->session_manager->setLoggedInUser($user);
+
+        $d = $this->makeDiscussion(1);
+
+        // Fires permissions_check:comment, which invokes the registered handler.
+        $this->assertIsBool($d->canComment($user->guid));
+
+        $d->delete();
+    }
+
+    /**
      * Anonymous visitors have no user param. Dereferencing it fataled every
      * anonymous request to /discussion/all with a TypeError on canComment(null).
      *

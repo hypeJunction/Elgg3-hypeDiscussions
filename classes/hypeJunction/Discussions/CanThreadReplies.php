@@ -45,7 +45,12 @@ class CanThreadReplies {
 				return null;
 			}
 
-			return $entity->canComment($user->guid);
+			// NOT canComment(): UserCapabilities::canComment() triggers this very
+			// event, so calling it from a handler recurses until the stack blows
+			// ("Maximum call stack size ... reached. Infinite recursion?").
+			// canWriteToContainer() is precisely the default value core passes into
+			// the event, so this returns the same answer without re-entering it.
+			return $entity->canWriteToContainer($user->guid, 'object', 'comment');
 		}
 	}
 }

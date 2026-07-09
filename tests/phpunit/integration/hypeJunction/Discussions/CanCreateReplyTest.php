@@ -69,6 +69,42 @@ class CanCreateReplyTest extends IntegrationTestCase {
     }
 
     /**
+     * Elgg 7's ElggEntity::canWriteToContainer(int $user_guid, string $type,
+     * string $subtype) throws when $type or $subtype is empty. The group branch
+     * called it bare, so every logged-in view of a group discussion 500'd.
+     *
+     * @return void
+     */
+    public function testGroupBranchPassesTypeAndSubtype(): void {
+        $user = $this->createUser();
+        _elgg_services()->session_manager->setLoggedInUser($user);
+
+        $group = $this->createGroup();
+        $group->enableTool('forum');
+        $group->save();
+
+        $discussion = new Discussion();
+        $discussion->owner_guid = $user->guid;
+        $discussion->container_guid = $group->guid;
+        $discussion->access_id = ACCESS_PUBLIC;
+        $discussion->title = 'T';
+        $discussion->description = 'D';
+        $discussion->status = 'open';
+        $this->assertNotFalse($discussion->save());
+
+        $event = new Event(elgg(), 'permissions_check:comment', 'object', true, [
+            'user' => $user,
+            'entity' => $discussion,
+        ]);
+
+        $handler = new CanCreateReply();
+        $this->assertIsBool($handler($event));
+
+        $discussion->delete();
+        $group->delete();
+    }
+
+    /**
      * Anonymous visitors have no user param; canWriteToContainer(null) is a
      * TypeError, which fataled anonymous discussion listings.
      *

@@ -27,6 +27,11 @@ class CanCreateDiscussion {
 			return null;
 		}
 
+		if (!$user instanceof \ElggUser) {
+			// Anonymous visitors never get write permission.
+			return false;
+		}
+
 		if ($container instanceof \ElggGroup) {
 			if (!$container->isToolEnabled('forum')) {
 				return false;

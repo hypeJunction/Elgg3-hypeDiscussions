@@ -73,4 +73,25 @@ class CanThreadRepliesTest extends IntegrationTestCase {
         $handler = new CanThreadReplies();
         $this->assertNull($handler($hook));
     }
+
+    /**
+     * Anonymous visitors have no user param. Dereferencing it fataled every
+     * anonymous request to /discussion/all with a TypeError on canComment(null).
+     *
+     * @return void
+     */
+    public function testReturnsNullForAnonymousVisitor(): void {
+        $d = $this->makeDiscussion(1);
+        _elgg_services()->session_manager->removeLoggedInUser();
+
+        $hook = new Event(elgg(), 'permissions_check:comment', 'object', true, [
+            'user' => null,
+            'entity' => $d,
+        ]);
+
+        $handler = new CanThreadReplies();
+        $this->assertNull($handler($hook));
+
+        $d->delete();
+    }
 }

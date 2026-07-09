@@ -97,4 +97,24 @@ class CanCreateDiscussionTest extends IntegrationTestCase {
         $handler = new CanCreateDiscussion();
         $this->assertFalse($handler($hook));
     }
+
+    /**
+     * Anonymous visitors have no user param; canEdit(null) is a TypeError.
+     *
+     * @return void
+     */
+    public function testReturnsFalseForAnonymousVisitor(): void {
+        $group = $this->createGroup();
+
+        $hook = new Event(elgg(), 'container_permissions_check', 'object', true, [
+            'user' => null,
+            'container' => $group,
+            'subtype' => 'discussion',
+        ]);
+
+        $handler = new CanCreateDiscussion();
+        $this->assertFalse($handler($hook));
+
+        $group->delete();
+    }
 }

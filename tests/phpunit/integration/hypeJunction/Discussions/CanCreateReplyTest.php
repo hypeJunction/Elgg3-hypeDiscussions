@@ -67,4 +67,39 @@ class CanCreateReplyTest extends IntegrationTestCase {
         $discussion->delete();
         $group->delete();
     }
+
+    /**
+     * Anonymous visitors have no user param; canWriteToContainer(null) is a
+     * TypeError, which fataled anonymous discussion listings.
+     *
+     * @return void
+     */
+    public function testReturnsFalseForAnonymousVisitor(): void {
+        $user = $this->createUser();
+        _elgg_services()->session_manager->setLoggedInUser($user);
+
+        $group = $this->createGroup();
+
+        $discussion = new Discussion();
+        $discussion->owner_guid = $user->guid;
+        $discussion->container_guid = $group->guid;
+        $discussion->access_id = ACCESS_PUBLIC;
+        $discussion->title = 'T';
+        $discussion->description = 'D';
+        $discussion->status = 'open';
+        $this->assertNotFalse($discussion->save());
+
+        _elgg_services()->session_manager->removeLoggedInUser();
+
+        $event = new Event(elgg(), 'permissions_check:comment', 'object', true, [
+            'user' => null,
+            'entity' => $discussion,
+        ]);
+
+        $handler = new CanCreateReply();
+        $this->assertFalse($handler($event));
+
+        $discussion->delete();
+        $group->delete();
+    }
 }

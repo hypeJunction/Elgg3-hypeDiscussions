@@ -21,7 +21,7 @@ class CanThreadReplies {
 	 *
 	 * @param Event $event Hook
 	 *
-	 * @return bool
+	 * @return bool|null
 	 */
 	public function __invoke(Event $event) {
 
@@ -38,6 +38,11 @@ class CanThreadReplies {
 			if (!$threads) {
 				// Threading is disabled for this discussion
 				return false;
+			}
+
+			if (!$user instanceof \ElggUser) {
+				// Anonymous: leave the permission at whatever core decided.
+				return null;
 			}
 
 			return $entity->canComment($user->guid);

@@ -28,6 +28,11 @@ class CanCreateReply {
 			return null;
 		}
 
+		if (!$user instanceof \ElggUser) {
+			// Anonymous visitors never get write permission.
+			return false;
+		}
+
 		if (!$entity->canWriteToContainer($user->guid, 'object', 'comment')) {
 			return false;
 		}
